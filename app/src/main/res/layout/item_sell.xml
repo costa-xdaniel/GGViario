@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/app_background"
+    android:paddingTop="16dp"
+    android:paddingStart="16dp"
+    android:paddingBottom="16dp"
+    android:layout_marginTop="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_toEndOf="@+id/bt_remove"
+        >
+        <TextView
+            android:id="@+id/tv_item_sell_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/products"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimary"
+            />
+
+        <TextView
+            android:id="@+id/tv_item_sell_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/measure"
+            android:textSize="14sp"
+            android:textColor="@color/textSecondary"
+            />
+
+        <TextView
+            android:id="@+id/tv_item_sell_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/values"
+            android:layout_margin="0dp"
+            android:textSize="14sp"
+            android:textColor="@color/textSecondary"
+
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:padding="16dp"
+        android:id="@+id/bt_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_delete_teal_500_24dp"
+        android:contentDescription="@string/remove"
+        />
+</RelativeLayout>
