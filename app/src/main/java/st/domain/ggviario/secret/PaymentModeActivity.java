@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import st.domain.support.android.fragment.GeralActivityPager;
 import st.domain.support.android.view.SlidingTabLayout;
 import st.domain.ggviario.secret.support.callbaks.OnPaymentChoseListiner;
-import st.domain.ggviario.secret.support.events.CloseActivityEvent;
+import st.domain.ggviario.secret.support.events.BackHomeUpMenuObserver;
 import st.domain.ggviario.secret.support.events.MenuMapper;
 import st.domain.ggviario.secret.support.fragments.SellPaymentCredit;
 import st.domain.ggviario.secret.support.fragments.SellPaymentNow;
@@ -36,12 +36,12 @@ public class PaymentModeActivity extends GeralActivityPager implements ViewPager
 
         this.pager = (ViewPager) this.findViewById(R.id.pager_payment_mode);
         this.slidingLayout = (SlidingTabLayout) this.findViewById(R.id.tabs_payment_mode);
-        this.tollbar = (Toolbar) this.findViewById(R.id.toolbar_top);
+        this.tollbar = (Toolbar) this.findViewById(R.id.toolbar);
         this.menuMapper = new MenuMapper(this);
-        this.menuMapper.add(new CloseActivityEvent());
+        this.menuMapper.add(new BackHomeUpMenuObserver());
 
-        CloseActivityEvent done;
-        this.menuMapper.add(done = new CloseActivityEvent());
+        BackHomeUpMenuObserver done;
+        this.menuMapper.add(done = new BackHomeUpMenuObserver());
         done.setMenuId(R.id.opt_paymode_done);
 
 

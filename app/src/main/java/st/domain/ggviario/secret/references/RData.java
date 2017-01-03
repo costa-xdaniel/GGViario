@@ -10,37 +10,15 @@ public class RData implements XFieldName
 {
     public static final String ALL="*";
     public static  String VER_CLIENTS;
-    public static int DATABASE_VERSION = 53;
-    public static final String DATABASE_NAME = "quitanda.phone.db";
+
 
     //VIEWS
     public static String //Currenr arra as view
             VER_METREAGE_PRODUCT,
             VER_PRODUTO_SELL,
             VER_CURRENT_LOGIN,
-            VER_OPERACOES,
-            VER_OPERATION_DAY,
-            VER_SUMMARY_SELL,
             VER_CLIEN_NEWS,
-            VER_PRODUCT_COMPLETE // The data of product table and measure table
-                    ;
-
-    // VIEW ATRIBUTS
-    public static String
-            // ATRIBUTES OF VER_SUMMARY_SELL
-            SUMSELL_TOTAL,
-            SUMSELL_TOTAL_VALUE,
-            SUMSELL_SELL,
-            SUMSELL_SELL_VALUE,
-            SUMSELL_CREDIT,
-            SUMSELL_CREDIT_VALUE,
-            OBJRES_ID,
-            OBJRES_PREVIEWID,
-            OBJRES_DESC,
-            OBJDOC_ID,
-            OBJDOC_PREVIEWID,
-            OBJDOC_DESC
-
+            VER_PRODUCT_COMPLETE // The data of product table jand measure table
                     ;
 
 
@@ -52,34 +30,20 @@ public class RData implements XFieldName
             CLI_OBJ_RESID,
             CLI_CONTACT,
             CLI_PREVIEWID,
-            CLI_ID,
-            CLI_NUMDOC,
-            CLI_OBJ_TYPECOCUMENT,
-            CLI_SYSTYPE,
-            CLI_USER_ID
-                    ;
+            CLI_ID;
 
     //ATRIBUTOS PARA A ENTIDADE MEDIDA
     public static String
-            T_METREAGE,
             MET_NAME,
             MET_COD,
             MET_ID;
 
     //Entidade produto
     public static String
-            T_PRODUCT,
-            PROD_PROD_ID,
             PROD_ID,
-            PROD_NAME,
-            PROD_MET_ID,
-            PROD_MARKETE,
-            PROD_STOCK_ID,
-            PROD_STOCK;
+            PROD_NAME;
 
     public static String
-            T_SELLROULE,
-            SELL_ID,
             SELL_PROD_ID,
             SELL_QUANTITY,
             SELL_PRICE,

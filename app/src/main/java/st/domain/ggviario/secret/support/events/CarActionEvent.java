@@ -31,7 +31,7 @@ public class CarActionEvent implements MenuObserver, ObserverCalculated
         this.hasIncar = hasIncar;
         this.add = hasIncar;
 
-        Log.i("DBA:APP.TEST", "event in car addItem:"+ this.add+" | has_in_car: "+hasIncar);
+        Log.i("DBA:APP.TEST", "event inSelect car addItem:"+ this.add+" | has_in_car: "+hasIncar);
     }
 
     public void onMenu(Menu menu) {

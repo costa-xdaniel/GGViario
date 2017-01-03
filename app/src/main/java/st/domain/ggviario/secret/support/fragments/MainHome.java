@@ -11,11 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import st.domain.ggviario.secret.Crop;
 import st.domain.ggviario.secret.Despesas;
 import st.domain.support.android.model.ItemFragment;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.references.RMap;
-import st.domain.ggviario.secret.Harvest;
 import st.domain.ggviario.secret.NewClientActivity;
 import st.domain.ggviario.secret.SellStepperActivity;
 import st.domain.ggviario.secret.support.adapters.SupportHome;
@@ -54,11 +54,13 @@ public class MainHome extends Fragment implements ItemFragment
                 .image(R.drawable.ic_sync_white_48dp)
                 .activity(NewClientActivity.class);
 
+
         SupportHome.DataOperation harvest = SupportHome.newOperation()
                 .color(R.color.mat_pink_primary)
                 .name("Colheita")
                 .image(R.drawable.ic_shopping_basket_white_48dp)
-                .activity(Harvest.class);
+                .activity(Crop.class);
+
 
         SupportHome.DataOperation fatura = SupportHome.newOperation()
                 .color(R.color.md_brown_500)
@@ -72,14 +74,14 @@ public class MainHome extends Fragment implements ItemFragment
 
         this.list.add(harvest);
         this.list.add(fatura);
-        this.list.add(sell);
-        this.list.add(sync);
+//        this.list.add(sell);
+//        this.list.add(sync);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.rootView = inflater.inflate(R.layout.layout_recycler_view, container, false);
+        this.rootView = inflater.inflate(R.layout._main_home, container, false);
         this.recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
 
 //        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

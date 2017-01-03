@@ -39,7 +39,7 @@ public class Car
 
 
     /**
-     * Remove the item in car
+     * Remove the item inSelect car
      * @param product
      * @return
      */

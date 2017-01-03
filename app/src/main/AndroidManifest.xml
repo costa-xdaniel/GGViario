@@ -21,11 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".SellStepperActivity" />
-        <activity android:name=".Harvest" />
+        <activity android:name=".CropNew" />
         <activity android:name=".CalculatorActivity" />
         <activity android:name=".PaymentModeActivity" />
         <activity android:name=".NewClientActivity" />
         <activity android:name=".Despesas" />
+        <activity android:name=".Crop" />
+        <activity android:name=".CropContent" />
+
 
     </application>
 

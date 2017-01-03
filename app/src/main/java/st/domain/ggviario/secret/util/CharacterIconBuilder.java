@@ -33,14 +33,14 @@ public class CharacterIconBuilder
     }
 
     /**
-     * Set the default dimension of buildImage in dp
+     * Set the default dimension of buildImage inSelect dp
      * <br/>On pos build the default dimension is 24dp
      * <br>On pos set dimesion{
      * <br/>left: 0
      * <br/>top: 0
-     * <br/>bottom: dimension in dp
-     * <br/>bottom: dimension in dp}
-     * @param dimension the dimension in dp
+     * <br/>bottom: dimension inSelect dp
+     * <br/>bottom: dimension inSelect dp}
+     * @param dimension the dimension inSelect dp
      */
     public void defaultSize(int dimension)
     {

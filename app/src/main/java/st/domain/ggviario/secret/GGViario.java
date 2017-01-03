@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.idescout.sql.SqlScoutServer;
+
+import st.domain.ggviario.secret.dao.Dao;
 import st.domain.support.android.beans.CallbackControler;
 import st.domain.support.android.fragment.GeralActivityPager;
 import st.domain.support.android.model.CallbackClient;
 import st.domain.support.android.model.Divice;
 import st.domain.support.android.socket.ClientSocketListener;
 import st.domain.support.android.socket.NetIntent;
-import st.domain.support.android.sqlite.AssetsDataBase;
 import st.domain.support.android.text.XTextName;
 import st.domain.support.android.view.SlidingTabLayout;
 import st.domain.ggviario.secret.references.RData;
@@ -40,13 +41,14 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout._main);
+        Dao.inti(this);
 
         SqlScoutServer.create(this, getPackageName());
 
         this.pager = (ViewPager) this.findViewById(R.id.pagerInit);
         this.slidingLayout = (SlidingTabLayout) this.findViewById(R.id.tabs_init);
-        this.tollbar = (Toolbar) this.findViewById(R.id.toolbar_top);
+        this.tollbar = (Toolbar) this.findViewById(R.id.toolbar);
 
 
 
@@ -75,9 +77,12 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
         super.setUp();
         CallbackControler.inOutingNet(this);
 
-        AssetsDataBase data = new AssetsDataBase(this, RData.DATABASE_NAME, RData.DATABASE_VERSION);
-//        data.restory();
+    }
 
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
     }
 
     @Override
@@ -142,6 +147,6 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
 
     @Override
     public CharSequence getProtocolKey() {
-        return RMap.IDENTIFIER_QUITANDA;
+        return RMap.IDENTIFIER_GGVIARIO;
     }
 }

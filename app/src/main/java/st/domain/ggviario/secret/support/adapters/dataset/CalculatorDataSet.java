@@ -51,7 +51,7 @@ public class CalculatorDataSet extends BaseCharacter implements BaseRecyclerAdap
     }
 
     /**
-     * ADD character in text
+     * ADD character inSelect text
      * @param c
      * @return
      */
@@ -87,7 +87,7 @@ public class CalculatorDataSet extends BaseCharacter implements BaseRecyclerAdap
     }
 
     /**
-     * Clear the text in calculator
+     * Clear the text inSelect calculator
      * @return
      */
     public boolean clear()

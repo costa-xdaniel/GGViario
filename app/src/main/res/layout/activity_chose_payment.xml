@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background">
 
-    <include android:id="@+id/toolbar_top"
-        layout="@layout/toolbar_main"/>
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar_simple"/>
 
     <st.domain.support.android.view.SlidingTabLayout
         android:id="@+id/tabs_payment_mode"

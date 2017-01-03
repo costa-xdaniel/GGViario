@@ -2,8 +2,7 @@ package st.domain.ggviario.secret.model.builders;
 
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.model.Product;
-
-import java.util.LinkedHashMap;
+import st.domain.support.android.sql.SQLRow;
 
 import static st.domain.ggviario.secret.references.RData.PROD_ID;
 import static st.domain.ggviario.secret.references.RData.PROD_NAME;
@@ -52,11 +51,11 @@ public class ProductBuilder extends Builder<Product>
         return new Product(id, name, measure);
     }
 
-    public Product buildMap(LinkedHashMap<CharSequence, Object> map)
+    public Product buildMap(SQLRow row)
     {
-        return id((int) map.get(PROD_ID))
-                .name(map.get(PROD_NAME).toString())
-                .measure(new MeasureBuilder().buildMap(map))
+        return id(row.integer(PROD_ID))
+                .name(row.string(PROD_NAME))
+                .measure(new MeasureBuilder().buildMap(row))
                 .build();
     }
 

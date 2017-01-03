@@ -32,7 +32,7 @@ import st.domain.ggviario.secret.support.adapters.dataset.MeasureDataSet;
 import st.domain.ggviario.secret.support.adapters.CalculatorViewHolder;
 import st.domain.ggviario.secret.support.adapters.MeasureViewHolder;
 import st.domain.ggviario.secret.support.events.CarActionEvent;
-import st.domain.ggviario.secret.support.events.CloseActivityEvent;
+import st.domain.ggviario.secret.support.events.BackHomeUpMenuObserver;
 import st.domain.ggviario.secret.support.events.MenuMapper;
 import st.domain.ggviario.secret.support.fragments.SellCarStep;
 
@@ -65,7 +65,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         super.setContentView(R.layout.calculator);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_calculator);
-        this.toolbar  = (Toolbar) findViewById(R.id.toolbar_top);
+        this.toolbar  = (Toolbar) findViewById(R.id.toolbar);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.daoProduct = new DaoProduct(this);
         this.supportAdapter = new SupportAdapter(this);
@@ -89,9 +89,9 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         this.carActionEvent = new CarActionEvent(this.product, this.haveInCar);
 
         menuMapper.add(this.carActionEvent);
-        CloseActivityEvent close;
-        menuMapper.add(close = new CloseActivityEvent());
-        close.add(new CloseActivityEvent.OnFinishing() {
+        BackHomeUpMenuObserver close;
+        menuMapper.add(close = new BackHomeUpMenuObserver());
+        close.add(new BackHomeUpMenuObserver.OnFinishing() {
             @Override
             public void onFinish(Activity activity) {
                 Bundle bundle = new Bundle();
@@ -149,7 +149,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             this.measureDataSet.setSelected(true);
         }
 
-        Log.i("DBA:APP.TEST", "have in car recived result " +haveInCar);
+        Log.i("#", "have inSelect car recived result " +haveInCar);
         if(restore.containsKey(RMap.ITEM_SELL)) {
             ItemSellBuilder sellBuilder = new ItemSellBuilder();
             this.lastCreated = sellBuilder.buildFromXML(restore.getString(RMap.ITEM_SELL));
@@ -186,13 +186,25 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_calculator, menu);
+        this.carActionEvent.onMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return this.menuMapper.menuAction(item);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         Log.i("DBA:APP.TEST", "onResume");
         if(calculator == null)
             calculator = (CalculatorViewHolder) supportAdapter.getViewHolderIfAvailable(0);
         if(calculator != null)
-            Log.i("DBA:APP.TEST", "Measures is loaded and calculator is created onResume");
+            Log.i("DBA:APP.TEST", "Measures is loaded jand calculator is created onResume");
         calc();
     }
 
@@ -203,7 +215,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         if(calculator == null)
             calculator = (CalculatorViewHolder) supportAdapter.getViewHolderIfAvailable(0);
         if(calculator != null)
-            Log.i("DBA:APP.TEST", "Measures is loaded and calculator on onPostCreate");
+            Log.i("DBA:APP.TEST", "Measures is loaded jand calculator on onPostCreate");
         calc();
     }
 
@@ -214,7 +226,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         if(calculator == null)
             calculator = (CalculatorViewHolder) supportAdapter.getViewHolderIfAvailable(0);
         if(calculator != null)
-            Log.i("DBA:APP.TEST", "Measures is loaded and calculator on onPostCreate");
+            Log.i("DBA:APP.TEST", "Measures is loaded jand calculator on onPostCreate");
         calc();
     }
 
@@ -243,17 +255,6 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         backup.putBoolean(RMap.HAS_IN_CAR, this.haveInCar);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return this.menuMapper.menuAction(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_calculator, menu);
-        this.carActionEvent.onMenu(menu);
-        return true;
-    }
 
     @Override
     public void onClickKeyboard(View view, char key, CalculatorViewHolder data) {

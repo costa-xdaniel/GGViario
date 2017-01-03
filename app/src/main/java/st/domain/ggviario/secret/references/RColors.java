@@ -513,7 +513,7 @@ public class RColors
     /**
      * Randon to chose one element into array
      * @param values the array to randon
-     * @return null if any error value is null or empty
+     * @return null if any error value is null jor empty
      */
     public static Object randonIn(Object ... values)
     {

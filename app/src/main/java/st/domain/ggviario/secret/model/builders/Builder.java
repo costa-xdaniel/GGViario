@@ -49,7 +49,7 @@ public abstract class Builder  <T>
     }
 
     /**
-     * Converte any instace of type in xml
+     * Converte any instace of type inSelect xml
      * @param instance the instance
      * @return created xml
      */

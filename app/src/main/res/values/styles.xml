@@ -15,7 +15,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
-        <!-- You can also set colorControlNormal,  colorControlActivated, colorControlHighlight, and colorSwitchThumbNormal.-->
+        <!-- You can also set colorControlNormal,  colorControlActivated, colorControlHighlight, jand colorSwitchThumbNormal.-->
 
         <item name="colorControlNormal">@color/colorControlNormal</item>
         <!--<item name="colorControlHighlight">@color/colorControlHighlight</item>-->

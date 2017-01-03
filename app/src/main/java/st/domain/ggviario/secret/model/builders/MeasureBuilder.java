@@ -2,8 +2,7 @@ package st.domain.ggviario.secret.model.builders;
 
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.references.RData;
-
-import java.util.LinkedHashMap;
+import st.domain.support.android.sql.SQLRow;
 
 /**
  * Created by Daniel Costa at 8/29/16.
@@ -45,11 +44,11 @@ public class MeasureBuilder extends Builder<Measure>
         return new Measure(id, key, name, defaultPrice);
     }
 
-    public Measure buildMap(LinkedHashMap<CharSequence, Object> map)
+    public Measure buildMap(SQLRow row)
     {
-        return id((int) map.get(RData.MET_ID))
-                .key(map.get(RData.MET_COD).toString())
-                .name(map.get(RData.MET_NAME).toString())
+        return id(row.integer(RData.MET_ID))
+                .key(row.string(RData.MET_COD))
+                .name(row.string(RData.MET_NAME))
                 .build();
     }
 }
