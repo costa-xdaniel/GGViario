@@ -117,10 +117,12 @@ create or REPLACE FUNCTION FUNC_REG_AMORTIZCAO
          END IF;
         */
          idTypeMoviment := OP.TYPEMOVIMENT_ID;
-         
+
+        IF OP.VALUE = 'REC-VALUE' THEN
          -- Reg Movimentation Account
          PRC_REG_MOVIMENTATION_PAYMENT(USER_ID, OP.ACCOUNT_ID, idTypeMoviment, (VALOR_amortizar * taxaVenda), SYSDATE, idPayment, 'REG.PAY', OP.VALUE);
-     END LOOP;
+        END IF;
+      END LOOP;
                                         
       RETURN 'true;'||FUNC_ERROR('OK') ;                       
                               

@@ -16,7 +16,7 @@
       <user-name>credial</user-name>
       <resolve-scope>credial:credial,public</resolve-scope>
     </data-source>
-    <data-source name="@192.168.43.174" uuid="9f88e70d-0c81-4009-a775-1ab76dc66c92">
+    <data-source name="@10.42.0127" uuid="3c39cde9-2251-4941-9fac-6478152184e1">
       <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
         <extra-name-characters>$#</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -26,15 +26,23 @@
       <user-name>SEGUROS</user-name>
       <resolve-scope>*:PUBLIC,SEGUROS</resolve-scope>
     </data-source>
-    <data-source name="SEGUROS@PROJECTO" uuid="ca843d00-bb07-4f9d-bae2-924cc1c6859c">
-      <database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0">
-        <extra-name-characters>$#</extra-name-characters>
+    <data-source name="academico@localhost" uuid="42a977ed-938e-47b2-b5a0-203109fc2de6">
+      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
-      <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
-      <user-name>SEGUROS</user-name>
-      <resolve-scope>*:PUBLIC,SEGUROS</resolve-scope>
+      <user-name>SGA</user-name>
+      <resolve-scope>academico:public,sga</resolve-scope>
+    </data-source>
+    <data-source name="datamining@localhost" uuid="e812c86e-2057-421c-8cf2-2a59d3f778fd">
+      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <resolve-scope>datamining:postgres,public</resolve-scope>
     </data-source>
   </component>
 </project>

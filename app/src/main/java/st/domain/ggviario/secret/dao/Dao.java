@@ -11,7 +11,7 @@ import st.domain.support.android.old_sql.sqlite.LiteDataBase;
  */
 
 public class Dao extends LiteDataBase implements _database {
-    public static int DATABASE_VERSION = 68;
+    public static int DATABASE_VERSION = 74;
     public static final String DATABASE_NAME = "ggviario.mobile.db";
 
 

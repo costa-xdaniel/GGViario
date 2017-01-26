@@ -29,7 +29,7 @@ public class CropNew extends AppCompatActivity
     AppCompatSpinner spinner;
     private MenuMapper menuMapper;
     private EditText edQuantity;
-    private EditText edQuantityPercasOvos;
+    private EditText edQuantityPercas;
     private EditText edQuantityPercasGalinha;
     private SectorAdapter sectorAdapter;
 
@@ -41,8 +41,8 @@ public class CropNew extends AppCompatActivity
 
         this.spinner = (AppCompatSpinner) this.findViewById(R.id.sector_spnner);
         this.edQuantity = (EditText) this.findViewById(R.id.ed_crop_quantity);
-        this.edQuantityPercasOvos = (EditText) this.findViewById(R.id.ed_crop_percas_galinha);
-        this.edQuantityPercasGalinha = (EditText) this.findViewById(R.id.ed_crop_quantity_perca);
+        this.edQuantityPercas = (EditText) this.findViewById(R.id.ed_crop_quantity_perca);
+        this.edQuantityPercasGalinha = (EditText) this.findViewById(R.id.ed_crop_quantity_percas_galinha);
 
         this.prepareToolbar();
 
@@ -86,8 +86,7 @@ public class CropNew extends AppCompatActivity
         this.toolbar.inflateMenu(R.menu.menu_crop_new);
 
         this.setSupportActionBar(toolbar);
-        if(this.getSupportActionBar() != null)
-        {
+        if(this.getSupportActionBar() != null) {
             this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             this.getSupportActionBar().setTitle(R.string.new_crop);
             this.toolbar.setTitleTextColor(getResources().getColor(R.color.white));
@@ -98,8 +97,8 @@ public class CropNew extends AppCompatActivity
     private boolean concluir() {
 
         String tQuantity = this.edQuantity.getText().toString();
-        String tQuantityPercas = this.edQuantityPercasOvos.getText().toString();
-        String tQuantityPercasGalinha = this.edQuantityPercasOvos.getText().toString();
+        String tQuantityPercas = this.edQuantityPercas.getText().toString();
+        String tQuantityPercasGalinha = this.edQuantityPercasGalinha.getText().toString();
         int index = this.spinner.getSelectedItemPosition();
 
         if(tQuantity.isEmpty()) tQuantity = "0";

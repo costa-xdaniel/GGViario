@@ -49,6 +49,17 @@ interface _database {
          String provider_dtreg = "provider_dtreg";
     }
 
+    String VER_SIMPLEPROVIDER$ = "VER_SIMPLEPROVIDER";
+    interface VER_SIMPLEPROVIDER {
+        String id  = "id";
+        String name = "name";
+        String contact = "contact";
+        String location = "location";
+        String site = "site";
+        String mail = "mail";
+    }
+
+
     String T_OUTGOPERATION$ = "T_OUTGOPERATION";
     interface T_OUTGOPERATION {
         String oprout_id = "oprout_id";

@@ -7,10 +7,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.db.chart.model.Bar;
+import com.db.chart.model.BarSet;
+import com.db.chart.model.ChartSet;
+import com.db.chart.model.LineSet;
+import com.db.chart.model.Point;
+import com.db.chart.view.BarChartView;
+import com.db.chart.view.ChartView;
+import com.db.chart.view.LineChartView;
 import com.idescout.sql.SqlScoutServer;
 
+import java.util.ArrayList;
+
 import st.domain.ggviario.secret.dao.Dao;
-import st.domain.support.android.beans.CallbackControler;
+import st.domain.support.android.beans.CallbackController;
 import st.domain.support.android.fragment.GeralActivityPager;
 import st.domain.support.android.model.CallbackClient;
 import st.domain.support.android.model.Divice;
@@ -41,6 +51,14 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        // charSetExemple();
+        oficialCode();
+
+
+    }
+
+    private void oficialCode() {
         setContentView(R.layout._main);
         Dao.inti(this);
 
@@ -49,7 +67,6 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
         this.pager = (ViewPager) this.findViewById(R.id.pagerInit);
         this.slidingLayout = (SlidingTabLayout) this.findViewById(R.id.tabs_init);
         this.tollbar = (Toolbar) this.findViewById(R.id.toolbar);
-
 
 
         this.tollbar.setTitle(R.string.app_name);
@@ -67,7 +84,6 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
         this.slidingLayout.useColorizerOnTextColor(true);
 
 
-
         super.addFragment(home);
         super.addFragment(blank1);
         super.setViewPager(this.pager);
@@ -75,8 +91,41 @@ public class GGViario extends GeralActivityPager implements ClientSocketListener
         super.setDistributeEvenly(false);
         super.setSelectedIndicatorColor(getResources().getColor(R.color.white));
         super.setUp();
-        CallbackControler.inOutingNet(this);
+        CallbackController.inOutingNet(this);
+    }
 
+    private void charSetExemple() {
+        setContentView(R.layout.charts);
+
+        LineChartView chartView = (LineChartView) this.findViewById(R.id.chart);
+
+
+        ArrayList<ChartSet> dataset = new ArrayList<>();
+
+
+        LineSet dataL;
+        dataL = new LineSet();
+        dataL.addPoint(new Point("", 1));
+        dataL.addPoint(new Point("", 11));
+        dataL.addPoint(new Point("", 12));
+        dataL.addPoint(new Point("", 13));
+        dataL.addPoint(new Point("", 14));
+        dataset.add(dataL);
+
+        dataL = new LineSet();
+        dataL.setColor(getResources().getColor(R.color.mat_teal_primary));
+        dataL.setThickness(3);
+        dataL.addPoint(new Point("", 03f));
+        dataL.addPoint(new Point("", 05f));
+        dataL.addPoint(new Point("", 08f));
+        dataL.addPoint(new Point("", 09f));
+        dataL.addPoint(new Point("", 10f));
+        dataset.add(dataL);
+
+
+        chartView.addData(dataset);
+        chartView.notifyDataUpdate();
+        chartView.show();
     }
 
     @Override

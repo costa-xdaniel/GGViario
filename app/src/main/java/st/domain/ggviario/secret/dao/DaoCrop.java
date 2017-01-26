@@ -95,6 +95,9 @@ public class DaoCrop  extends Dao {
             }
         });
 
+
+        query().execute();
+
         return contentsList;
     }
 

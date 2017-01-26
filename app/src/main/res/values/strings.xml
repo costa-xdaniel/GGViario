@@ -93,5 +93,9 @@
     <string name="quantity_percas">Quantidades quebrados</string>
     <string name="kill">" Mortes\n"</string>
     <string name="quebrados">" Quebrados \n"</string>
+    <string name="prvider">Provedor</string>
+    <string name="provider_name">Nome do Provedor</string>
+    <string name="provider_location">Localizacao do provedor</string>
+    <string name="provider_contact">Contacto do provedor</string>
 
 </resources>

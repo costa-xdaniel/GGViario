@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import st.domain.ggviario.secret.Crop;
 import st.domain.ggviario.secret.Despesas;
+import st.domain.ggviario.secret.Provider;
 import st.domain.support.android.model.ItemFragment;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.references.RMap;
@@ -25,6 +26,7 @@ import java.util.List;
 //import ivb.com.materialstepper.stepperFragment;
 
 /**
+ *
  * Created by xdata on 8/11/16.
  */
 public class MainHome extends Fragment implements ItemFragment
@@ -64,9 +66,15 @@ public class MainHome extends Fragment implements ItemFragment
 
         SupportHome.DataOperation fatura = SupportHome.newOperation()
                 .color(R.color.md_brown_500)
-                .name("Despesas")
+                .name("Despesa")
                 .image(R.drawable.ic_content_paste_white_48dp)
                 .activity(Despesas.class);
+
+     SupportHome.DataOperation provider = SupportHome.newOperation()
+                .color(R.color.md_brown_500)
+                .name("Fornecedor")
+                .image(R.drawable.ic_person_outline_white_48dp)
+                .activity(Provider.class);
 
 
         this.list = supportAdapter.getCreatedSupport().getListDataSet();
@@ -74,6 +82,7 @@ public class MainHome extends Fragment implements ItemFragment
 
         this.list.add(harvest);
         this.list.add(fatura);
+        this.list.add(provider);
 //        this.list.add(sell);
 //        this.list.add(sync);
     }

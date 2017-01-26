@@ -1,21 +1,17 @@
 package st.domain.ggviario.secret;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -29,6 +25,7 @@ import st.domain.ggviario.secret.support.events.MenuMapper;
 import st.domain.ggviario.secret.support.fragments.TextSeparator;
 
 /**
+ *
  * Created by xdata on 12/24/16.
  */
 
@@ -58,12 +55,11 @@ public class Crop extends AppCompatActivity implements CropAdapter.OpenCrop {
                 }
         );
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){
-        };
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false){};
 
         layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-        findViewById(1);
+
 
         this.rvListCrop.setLayoutManager(layoutManager);
         this.addpter = new CropAdapter(this);
