@@ -1,9 +1,11 @@
 package st.domain.ggviario.secret.references;
 
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 
 import st.domain.ggviario.secret.R;
+import st.domain.support.android.util.ShapDrawableBuilder;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,6 +37,26 @@ public class RColors
     public static final String RED = "RED";
     public static final String TEAL = "TEAL";
     public static final String YELLOW = "YELLOW";
+
+
+    public static final int SECTOR_COLORS[] = {
+            R.color.md_amber_500,
+            R.color.md_cyan_500,
+            R.color.md_yellow_500,
+            R.color.md_pink_500,
+            R.color.md_deep_purple_500,
+            R.color.md_green_500,
+            R.color.md_blue_grey_500,
+            R.color.md_lime_500,
+            R.color.md_light_blue_500,
+            R.color.md_red_500,
+            R.color.md_purple_500,
+            R.color.md_grey_500,
+            R.color.md_indigo_500,
+            R.color.md_light_green_500,
+    };
+
+
 
     public static final Integer [] AMBER_COLORS = {
             //Amber colors
@@ -369,28 +391,6 @@ public class RColors
             R.color.md_yellow_A700 //FFD600</color>
     };
 
-    public static final Integer [] SHAP_OVAL_DRAWABLES = {
-            R.drawable.shap_oval_amber,
-            R.drawable.shap_oval_blue,
-            R.drawable.shap_oval_blue_grey,
-            R.drawable.shap_oval_cyan,
-            R.drawable.shap_oval_deep_orange,
-            R.drawable.shap_oval_deep_purple,
-            R.drawable.shap_oval_green,
-            R.drawable.shap_oval_grey,
-            R.drawable.shap_oval_indigo,
-            R.drawable.shap_oval_light_blue,
-            R.drawable.shap_oval_lime,
-            R.drawable.shap_oval_orange,
-            R.drawable.shap_oval_light_green,
-            R.drawable.shap_oval_pink,
-            R.drawable.shap_oval_purple,
-            R.drawable.shap_oval_red,
-            R.drawable.shap_oval_teal,
-            R.drawable.shap_oval_primary,
-            R.drawable.shap_oval_yellow,
-    };
-
     private static final HashMap<Integer, Integer> MAP_INDEX = new HashMap<>();
     static {
         MAP_INDEX.put(50, 0);
@@ -429,38 +429,6 @@ public class RColors
         MAP_COLORS.put(YELLOW, YELLOW_COLORS);
     }
 
-    public static int switchBackgroundOvalShap(int shapKey, Integer ... exclud)
-    {
-        if(exclud != null && exclud.length > SHAP_OVAL_DRAWABLES.length)
-            return R.drawable.shap_oval_primary;
-        if(shapKey <1) return R.drawable.shap_oval_primary;
-
-        Integer availableDrawable [] =
-                (exclud == null || exclud.length == 0)? SHAP_OVAL_DRAWABLES
-                : new Integer[SHAP_OVAL_DRAWABLES.length - exclud.length];
-
-        if(availableDrawable != SHAP_OVAL_DRAWABLES)
-        {
-            List<Integer> list = Arrays.asList(exclud);
-            int iCount =0;
-            for(int i: SHAP_OVAL_DRAWABLES)
-            {
-                if(!list.contains(i))
-                    availableDrawable[iCount ++] = i;
-            }
-
-        }
-
-        int indexShap = shapKey % availableDrawable.length;
-        try {
-            return availableDrawable[indexShap];
-        }
-        catch (Exception ex)
-        {
-            Log.e("DBA:APP.TEST", RColors.class.getSimpleName()+"-> "+ex.getMessage());
-            return R.drawable.shap_oval_primary;
-        }
-    }
 
     public static int switchColor(int shapKey, int level)
     {
@@ -476,6 +444,11 @@ public class RColors
             Log.e("DBA:APP.TEST", RColors.class.getSimpleName()+"-> "+ex.getMessage());
             return R.drawable.shap_oval_primary;
         }
+    }
+
+    public static int switchColor(int [] colors, int key) {
+        int indexColor = key % colors.length;
+        return colors[key];
     }
 
     /**

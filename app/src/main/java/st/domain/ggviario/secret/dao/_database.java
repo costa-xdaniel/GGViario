@@ -114,6 +114,10 @@ interface _database {
     }
 
 
+    String VER_CROP_DATE$ = "VER_CROP_DATE";
+    interface VER_CROP_DATE {
+        String date = "date";
+    }
 
 
 

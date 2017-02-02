@@ -3,6 +3,7 @@ package st.domain.ggviario.secret.model;
 import java.util.Date;
 
 /**
+ *
  * Created by xdata on 12/25/16.
  */
 public class Crop {

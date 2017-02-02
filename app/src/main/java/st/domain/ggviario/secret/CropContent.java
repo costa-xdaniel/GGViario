@@ -18,9 +18,9 @@ import java.util.List;
 
 import st.domain.ggviario.secret.dao.DaoCrop;
 import st.domain.ggviario.secret.model.CropSector;
-import st.domain.ggviario.secret.support.CropSectorAdapter;
-import st.domain.ggviario.secret.support.events.BackHomeUpMenuObserver;
-import st.domain.ggviario.secret.support.events.MenuMapper;
+import st.domain.ggviario.secret.adapter.CropSectorAdapter;
+import st.domain.ggviario.secret.callbaks.BackHomeUpMenuObserver;
+import st.domain.ggviario.secret.callbaks.MenuMapper;
 
 /**
  *
@@ -39,7 +39,7 @@ public class CropContent extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout._crop_day_content);
+        this.setContentView(R.layout._crop_datable_date_content);
 
         this.addpter = new CropSectorAdapter(this);
         Bundle bundle = this.getIntent().getExtras();

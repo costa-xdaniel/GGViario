@@ -29,8 +29,7 @@
     <color name="textSecondary">#757575</color>
 
     <!-- OTHER COLOR THEME-->
-    <!--<color name="colorControlActivated">?colorControlActivated</color>-->
-    <color name="colorControlNormal">@android:color/white</color>
+    <!--<color name="colorControlActivated">@android:color/white</color>-->
     <!--<color name="colorControlHighlight">?colorControlHighlight</color>-->
     <!--<color name="colorSwitchThumbNormal">?colorSwitchThumbNormal</color>-->
 

@@ -97,5 +97,9 @@
     <string name="provider_name">Nome do Provedor</string>
     <string name="provider_location">Localizacao do provedor</string>
     <string name="provider_contact">Contacto do provedor</string>
+    <string name="detais">Detalhes</string>
+    <string name="sector">Sector</string>
+    <string name="daylly">Diario</string>
+    <string name="credits">Creditos</string>
 
 </resources>

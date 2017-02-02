@@ -21,12 +21,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import st.domain.ggviario.secret.support.FaturaAdapter;
-import st.domain.ggviario.secret.support.events.BackHomeUpMenuObserver;
-import st.domain.ggviario.secret.support.events.MenuMapper;
+import st.domain.ggviario.secret.adapter.FaturaAdapter;
+import st.domain.ggviario.secret.callbaks.BackHomeUpMenuObserver;
+import st.domain.ggviario.secret.callbaks.MenuMapper;
 
 
 /**
+ *
  * Created by xdata on 12/21/16.
  */
 
@@ -44,7 +45,7 @@ public class Despesas extends AppCompatActivity implements DatePickerDialog.OnDa
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        super.setContentView(R.layout.despesa);
+        super.setContentView(R.layout._despesa);
 
         this.edDateDespesa = (EditText) findViewById(R.id.ed_despesa_date);
         this.floatAdd = (FloatingActionButton) findViewById(R.id.bt_new_despesa);
@@ -70,12 +71,8 @@ public class Despesas extends AppCompatActivity implements DatePickerDialog.OnDa
 
         prepareToolbar();
 
-        this.menuMaper.add(
-                new BackHomeUpMenuObserver()
-        );
-
-
-        dateDespesa  = Calendar.getInstance();
+        this.menuMaper.add(new BackHomeUpMenuObserver());
+        this.dateDespesa  = Calendar.getInstance();
 
         this.listFaturaRecycler = (RecyclerView) findViewById(R.id.rv_fatura_list);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -83,7 +80,7 @@ public class Despesas extends AppCompatActivity implements DatePickerDialog.OnDa
 
         this.adapter = new FaturaAdapter(this);
         this.listFaturaRecycler.setAdapter(this.adapter);
-        adapter.add();
+        this.adapter.add();
 
     }
 

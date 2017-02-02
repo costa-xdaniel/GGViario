@@ -1,11 +1,12 @@
 package st.domain.ggviario.secret.references;
 
-public interface RMap
-{
+public interface RMap {
 	/**
 	 * A porta de cuminicacao é gege {g = 7 | e = 5}
 	 */
 	int SOCKET_PORT = 7575;
+	int REQUEST_NEW_CROP = 10;
+
 
 	//IDENTIFICADORES
 	String IDENTIFIER_SELL_PAY_CREDIT = "IDENTIFIER_SELL_PAY_CREDIT";
@@ -16,9 +17,9 @@ public interface RMap
 	String QUERY_GET_SOCKET_SERVICE = "QUERY_GET_SOCKET_SERVICE";
 
 
-
 	//SUMARYES
-	String SUMMARY_REGISTER_TREATER_LISTNER = "SUMMARY_REGISTER_TREATER_LISTNER";;
+	String SUMMARY_REGISTER_TREATER_LISTNER = "SUMMARY_REGISTER_TREATER_LISTNER";
+	;
 	String ITEM_SELL = "ITEM_SELL";
 	String CAR_ACTION = "CAR_ACTION";
 	String HAS_IN_CAR = "HAS_IN_CAR";
@@ -27,4 +28,7 @@ public interface RMap
 	int REQ_REG_CLIENT = 10;
 	int RESP_REG_CLIENT = 20;
 	String CLIENT = "CLIENT";
+
+	String IDENTIFIER_CROP_DIARIO = "IDENTIFIER_CROP_DIARIO";
+
 }
