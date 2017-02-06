@@ -471,7 +471,7 @@ public class RColors
 
     /**
      * Get the color of one level
-     * @return null if level do no exist
+     * @return null if level do no hasOject
      */
     public static int [] getAllColorOfLevel(int levelColor)
     {

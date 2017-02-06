@@ -26,15 +26,15 @@ repositories {
 dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
     //  ANIMATIONS LIBRARY
     //    MENU DRAWABLE LIBRARY
     compile project(':dbutil')
     //compile project(':rnet')
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-    compile 'com.android.support:cardview-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:cardview-v7:25.1.1'
 
     //DATA PIKER WDULLAER {https://github.com/wdullaer/MaterialDateTimePicker}
     compile 'com.wdullaer:materialdatetimepicker:2.5.0'
@@ -72,8 +72,7 @@ dependencies {
 
 
     //COMPILE FOR SQLSCOUT IN DIVICE
-    compile 'com.idescout.sql:sqlscout-server:1.0'
-
+//    compile 'com.idescout.sql:sqlscout-server:1.0'
 
 
     //Griphics chart Philjay MPAndroidChart

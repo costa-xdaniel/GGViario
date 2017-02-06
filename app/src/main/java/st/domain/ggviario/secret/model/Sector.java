@@ -1,11 +1,12 @@
 package st.domain.ggviario.secret.model;
 
-import st.domain.ggviario.secret.dao.Dao;
+import st.domain.support.android.util.BaseCharSequence;
 
 /**
+ *
  * Created by xdata on 12/24/16.
  */
-public class Sector implements Dao.T_SECTOR {
+public class Sector extends BaseCharSequence {
     private Integer id;
     private String name;
 
@@ -20,5 +21,10 @@ public class Sector implements Dao.T_SECTOR {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

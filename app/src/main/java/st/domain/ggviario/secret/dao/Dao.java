@@ -10,8 +10,9 @@ import st.domain.support.android.sql.sqlite.AssetsDatabase;
  * Created by xdata on 12/24/16.
  */
 
-public class Dao extends LiteDatabase implements _database {
-    public static int DATABASE_VERSION = 111;
+public class Dao<E> extends LiteDatabase implements _database {
+
+    public static int DATABASE_VERSION = 117;
     public static final String DATABASE_NAME = "ggviario.mobile.db";
 
 
@@ -22,9 +23,10 @@ public class Dao extends LiteDatabase implements _database {
     }
 
 
-
     public static void inti(Context context) {
         new AssetsDatabase(context, Dao.DATABASE_NAME, Dao.DATABASE_VERSION)
-                .close();
+                .close()
+        ;
     }
+
 }

@@ -8,11 +8,11 @@ import st.domain.ggviario.secret.model.User;
  *
  * Created by xdata on 7/26/16.
  */
-public class DaoUser extends Dao
+public class UserDao extends Dao
 {
 
 
-    public DaoUser(Context context) {
+    public UserDao(Context context) {
         super(context);
     }
 
@@ -25,7 +25,7 @@ public class DaoUser extends Dao
      */
     public static User geUser(Context context)
     {
-//        DaoUser daoUser = new DaoUser(context);
+//        UserDao daoUser = new UserDao(context);
 //
 //        daoUser.begin(Operaction.SELECT);
 //        daoUser.select(RData.ALL)

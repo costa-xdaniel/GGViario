@@ -20,7 +20,7 @@ import java.util.List;
 import st.domain.ggviario.secret.CropContent;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.CropAdapter;
-import st.domain.ggviario.secret.dao.DaoCrop;
+import st.domain.ggviario.secret.dao.CropDao;
 import st.domain.ggviario.secret.items.TextSeparatorItem;
 import st.domain.ggviario.secret.model.Crop;
 import st.domain.ggviario.secret.references.RMap;
@@ -74,7 +74,7 @@ public class CropDateFragment extends LogFragment implements CropAdapter.OpenCro
     private void populateList() {
         Log.i("APP.GGVIARIO", "-> CropDateFragment.populateList");
 
-        DaoCrop daoCrop = new DaoCrop(this.context);
+        CropDao daoCrop = new CropDao(this.context);
         this.list = daoCrop.loadCropData();
         this.adapter.setOpenCrop(this);
 
@@ -128,7 +128,7 @@ public class CropDateFragment extends LogFragment implements CropAdapter.OpenCro
 
         Intent intent = new Intent(this.getContext(), CropContent.class);
         Bundle b = new Bundle();
-        b.putSerializable("date", dataSet.getDate());
+        b.putSerializable("value", dataSet.getDate());
         intent.putExtras(b);
         startActivity(intent);
 

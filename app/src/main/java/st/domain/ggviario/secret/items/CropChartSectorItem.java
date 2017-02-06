@@ -39,7 +39,8 @@ public class CropChartSectorItem extends ItemViewHolder {
         drawableBuilder.shap(ShapDrawableBuilder.Shap.OVAL)
                 .solidColor(this.dataSet.colorId);
         this.tvQuantity.setText(String.valueOf(this.dataSet.totalQuantity));
-        this.viewColor.setBackground(drawableBuilder.build());
+        //this.viewColor.setBackground(drawableBuilder.build());
+        this.viewColor.setBackgroundColor(this.context.getResources().getColor(this.dataSet.colorId));
         this.tvSectorNAme.setText(this.dataSet.sector.getName());
 
     }

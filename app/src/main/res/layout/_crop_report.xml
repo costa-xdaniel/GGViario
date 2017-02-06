@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rv_reports"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    />
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_reports"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_above="@+id/linearLayout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout"
+        android:padding="16dp"
+        android:background="@drawable/shap_float"
+        android:layout_margin="8dp"
+        >
+
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/sb_chose_chart"
+            style="@style/SeekBarChooser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="4"
+            android:progress="2"
+            />
+    </LinearLayout>
+</RelativeLayout>

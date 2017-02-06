@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import st.domain.ggviario.secret.model.Sector;
-import st.domain.support.android.sql.OnCatchSQLRow;
+import st.domain.support.android.sql.OnQueryResult;
 import st.domain.support.android.sql.SQLRow;
 import st.domain.support.android.sql.builder.Select;
 
@@ -15,9 +15,9 @@ import st.domain.support.android.sql.builder.Select;
  * Created by xdata on 12/29/16.
  */
 
-public class DaoSector extends Dao{
+public class SectorDao extends Dao{
 
-    public DaoSector(Context context) {
+    public SectorDao(Context context) {
         super(context);
     }
 
@@ -25,16 +25,15 @@ public class DaoSector extends Dao{
 
         final LinkedList<Sector> listSector = new LinkedList<Sector>();
 
-        this.query().execute(
-                new Select(ALL)
+        this.query(select(ALL)
                     .from(T_SECTOR$)
         );
 
-        this.query().forLoopCursor(
-                new OnCatchSQLRow() {
+        onQueryResult(new OnQueryResult() {
                     @Override
-                    public void accept(SQLRow row) {
+                    public boolean accept(SQLRow row) {
                         listSector.add(mountSector(row));
+                        return true;
                     }
                 }
         );

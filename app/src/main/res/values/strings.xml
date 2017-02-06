@@ -13,13 +13,13 @@
 
 
     <string name="name">Nome</string>
-    <string name="surname">Apelido</string>
+    <string name="surname_optional">Apelido (opcional)</string>
     <string name="product">Produto</string>
 
     <string name="cansel">Cansela</string>
     <string name="ok">OK</string>
 
-    <string name="contact">Contacto</string>
+    <string name="contact_optional">Contacto (opcional)</string>
     <string name="residence">Residencia</string>
     <string name="quantity">Quantidade</string>
     <string name="settings">Difinições</string>
@@ -101,5 +101,11 @@
     <string name="sector">Sector</string>
     <string name="daylly">Diario</string>
     <string name="credits">Creditos</string>
+    <string name="mail_optional">Mail (opcional)</string>
+    <string name="type_documents_optional">Tipo documento (opcional)</string>
+    <string name="document_number_optional">Numero de documento (Opcional)</string>
+    <string name="name_is_required">O nome é obrigatorio</string>
+    <string name="residence_is_required">A residencia é brigatiria</string>
+    <string name="gender_is_required">O sexo é obrigatorio</string>
 
 </resources>

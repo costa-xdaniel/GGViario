@@ -2,12 +2,11 @@ package st.domain.ggviario.secret;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -24,50 +23,36 @@ import st.domain.support.android.view.SlidingTabLayout;
  * Created by dchost on 30/01/17.
  */
 
-public class CropActivity extends AppCompatActivity {
+public class CropActivity extends AbstractActivityToolbarSlidingLayout {
 
-    private ViewPager viewPager;
-    private SlidingTabLayout slidingTabLayout;
     private FloatingActionButton floatingActionButton;
-    private Toolbar toolbar;
-    private PagerAdapter pagerAdapter;
 
 
     @Override
+    protected ViewPager getViewPager() {
+        return (ViewPager) this.findViewById(R.id.view_pager);
+    }
+
+    @Override
+    protected SlidingTabLayout getSlidingLayout() {
+        return (SlidingTabLayout) this.findViewById(R.id.sliding_pager_tabs);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout._crop;
+    }
+
+    @NonNull
+    @Override
+    public Toolbar getToolbar() {
+        return (Toolbar) this.findViewById(R.id.toolbar);
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("APP.GGVIARIO", "CropActivity.onCreate");
-
+        Log.i("APP.GGVIARIO", "-> CropActivity.onCreate");
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout._crop);
-
-
-        //ToolBar
-        this.toolbar = (Toolbar) this.findViewById(R.id.toolbar);
-        this.toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        this.toolbar.setTitle(R.string.crop);
-        this.setSupportActionBar(this.toolbar);
-        ActionBar actionBar = this.getSupportActionBar();
-
-
-        // View Pager
-        this.viewPager = (ViewPager) this.findViewById(R.id.view_pager);
-        this.pagerAdapter = new PagerAdapter(this.getSupportFragmentManager(), this);
-
-        this.slidingTabLayout = (SlidingTabLayout) this.findViewById(R.id.sliding_pager_tabs);
-//        this.slidingTabLayout.setCustomTabView(R.layout.tab, R.id.tab_title);
-        this.slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        this.slidingTabLayout.setSelectedIndicatorColors(this.getResources().getColor(R.color.white));
-
-        CropGeralReport geralReport = new CropGeralReport();
-        pagerAdapter.addFragment("Report", geralReport);
-        CropDateFragment dayFragment = new CropDateFragment();
-        pagerAdapter.addFragment("Diario", dayFragment);
-
-        this.viewPager.setAdapter(pagerAdapter);
-        this.slidingTabLayout.setViewPager(this.viewPager);
-
-
-
 
         // FloatingActionButton
         this.floatingActionButton = (FloatingActionButton) this.findViewById(R.id.fab_new_crop);
@@ -78,16 +63,31 @@ public class CropActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-        CropGeralReport cropReport = new CropGeralReport();
+    @Override
+    protected int getActivityName() {
+        return R.string.crop;
+    }
+
+    @Override
+    protected android.support.v4.view.PagerAdapter getAdapter() {
+
+        PagerAdapter pagerAdapter = new PagerAdapter(this.getSupportFragmentManager(), this);
+
         Bundle bundle = new Bundle();
-        cropReport.setArguments(bundle);
-        // this.adapterPager.addFragment("Visão", cropReport);
+        CropGeralReport geralReport = new CropGeralReport();
+        geralReport.setArguments(bundle);
+        pagerAdapter.addFragment("Report", geralReport);
 
 
         bundle = new Bundle();
+        CropDateFragment dayFragment = new CropDateFragment();
         dayFragment.setArguments(bundle);
-        //this.adapterPager.addFragment("Diario", dayFragment);
+        pagerAdapter.addFragment("Diario", dayFragment);
+
+        return pagerAdapter;
+
     }
 
     private void newCrop() {

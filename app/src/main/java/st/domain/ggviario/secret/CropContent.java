@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import st.domain.ggviario.secret.dao.DaoCrop;
+import st.domain.ggviario.secret.dao.CropDao;
 import st.domain.ggviario.secret.model.CropSector;
 import st.domain.ggviario.secret.adapter.CropSectorAdapter;
 import st.domain.ggviario.secret.callbaks.BackHomeUpMenuObserver;
@@ -43,7 +43,7 @@ public class CropContent extends AppCompatActivity {
 
         this.addpter = new CropSectorAdapter(this);
         Bundle bundle = this.getIntent().getExtras();
-        this.date = (Date) bundle.getSerializable("date");
+        this.date = (Date) bundle.getSerializable("value");
         this.rvListCrop = (RecyclerView) findViewById(R.id.rv_list_crop_sector);
         int columns = (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
                 ? 3: 2;
@@ -108,7 +108,7 @@ public class CropContent extends AppCompatActivity {
     private void populateList() {
 
         this.addpter.clear();
-        DaoCrop dao = new DaoCrop(this);
+        CropDao dao = new CropDao(this);
         this.list = dao.loadCropContents(this.date);
 
         for (CropSector cropSector : this.list){

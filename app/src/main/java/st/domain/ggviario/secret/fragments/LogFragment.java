@@ -2,28 +2,13 @@ package st.domain.ggviario.secret.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-
-import st.domain.ggviario.secret.CropContent;
-import st.domain.ggviario.secret.R;
-import st.domain.ggviario.secret.adapter.CropAdapter;
-import st.domain.ggviario.secret.dao.DaoCrop;
-import st.domain.ggviario.secret.model.Crop;
-import st.domain.ggviario.secret.references.RMap;
 
 /**
  *

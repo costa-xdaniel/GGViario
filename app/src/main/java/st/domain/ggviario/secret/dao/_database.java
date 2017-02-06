@@ -119,6 +119,48 @@ interface _database {
         String date = "date";
     }
 
+    String T_OBJECTTYPE$ = "T_OBJECTTYPE";
+    interface T_OBJECTTYPE {
+        String tobj_id = "tobj_id";
+        String tobj_desc = "tobj_desc";
+        String tobj_state = "tobj_state";
+    }
+
+
+    //Objects
+    String T_OBJECT$ = "T_OBJECT";
+    interface T_OBJECT {
+        String obj_id = "obj_id";
+        String obj_tobj_id = "obj_tobj_id";
+        String obj_obj_id = "obj_obj_id";
+        String obj_user_id = "obj_user_id";
+        String obj_desc = "obj_desc";
+        String obj_state = "obj_state";
+    }
+
+    String VER_OBJECTS$ = "VER_OBJECTS";
+    interface VER_OBJECTS extends T_OBJECT {}
+
+    String T_CLIENT$ = "T_CLIENT";
+    interface  T_CLIENT {
+        String cli_id = "cli_id";
+        String cli_user_id = "cli_user_id";
+        String cli_obj_residence = "cli_obj_residence";
+        String cli_obj_typedocument  = "cli_obj_typedocument";
+        String cli_name = "cli_name";
+        String cli_surname = "cli_surname";
+        String cli_contact = "cli_contact";
+        String cli_gender_id = "cli_gender_id";
+        String cli_mail = "cli_mail";
+        String cli_document = "cli_document";
+    }
+
+    String T_GENDER$ = "T_GENDER";
+    interface T_GENDER {
+        String gender_id = "gender_id";
+        String gender_desc = "gender_desc";
+    }
+
 
 
 

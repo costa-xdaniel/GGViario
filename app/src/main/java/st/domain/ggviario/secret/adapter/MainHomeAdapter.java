@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import st.domain.ggviario.secret.R;
 import st.domain.support.android.adapter.ItemDataSet;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.ggviario.secret.R;
-import st.domain.ggviario.secret.util.BaseCharacter;
+import st.domain.support.android.util.BaseCharSequence;
 
 /**
  * Created by xdata on 8/11/16.
@@ -150,7 +150,7 @@ public class MainHomeAdapter extends RecyclerViewAdapter {
         }
     }
 
-    public static class DataOperation extends BaseCharacter implements ItemDataSet
+    public static class DataOperation extends BaseCharSequence implements ItemDataSet
     {
         private int color;
         private String name;
