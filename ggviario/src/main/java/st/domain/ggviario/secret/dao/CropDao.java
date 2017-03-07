@@ -34,16 +34,16 @@ public class CropDao extends Dao {
     private int count;
     public void register(int quantity, Sector sector, int quantityPercasOvos, int quantityPercasGalinha) {
 
-        User user = UserDao.geUser(this.getContext());
+        User user = getCurrentUser();
 
         execute(
-                insertInto(T_CROP$)
+                insertInto($crop)
                 .columns(
-                    T_CROP.crop_totalovos,
-                    T_CROP.crop_sector_id,
-                    T_CROP.crop_user_id,
-                    T_CROP.crop_percasovos,
-                    T_CROP.crop_percasgalinhas
+                    crop.crop_ovos,
+                    crop.crop_sector_id,
+                    crop.crop_user_id,
+                    crop.crop_ovosdefeituosos,
+                    crop.crop_percasgalinhas
                 ).values(
                     quantity,
                     sector.getId(),
@@ -61,7 +61,7 @@ public class CropDao extends Dao {
         final List<Crop> cropList = new Stack<>();
 
         query(select(ALL)
-                .from(VER_CROPGROUP$)
+                .from($ver_cropgroup)
         );
 
         onQueryResult(
@@ -82,8 +82,8 @@ public class CropDao extends Dao {
         final List<CropSector> contentsList = new LinkedList<>();
 
         query(select(ALL)
-                    .from(VER_CROPSECTORDATE$)
-                    .where(VER_CROPSECTORDATE.date).equal(value(date))
+                    .from($ver_cropsectordate)
+                    .where(ver_cropsectordate.date).equal(date(date))
         );
 
         onQueryResult(new OnQueryResult() {
@@ -99,10 +99,10 @@ public class CropDao extends Dao {
 
     static CropSector mountDateSector(SQLRow row) {
         return new CropSector(
-                row.date(VER_CROPGROUP.date),
-                row.integer(VER_CROPGROUP.quantity),
-                row.integer(VER_CROPGROUP.quantitypercas),
-                row.integer(VER_CROPGROUP.quantitypercasgalinha),
+                row.date(ver_cropgroup.date),
+                row.integer(ver_cropgroup.quantity),
+                row.integer(ver_cropgroup.quantitypercas),
+                row.integer(ver_cropgroup.quantitypercasgalinha),
                 SectorDao.mountSector(row)
         );
     }
@@ -111,10 +111,10 @@ public class CropDao extends Dao {
     public static Crop mountCropDate(SQLRow row) {
         return new Crop(
 
-                row.date(VER_CROPGROUP.date),
-                row.integer(VER_CROPGROUP.quantity),
-                row.integer(VER_CROPGROUP.quantitypercas),
-                row.integer(VER_CROPGROUP.quantitypercasgalinha)
+                row.date(ver_cropgroup.date),
+                row.integer(ver_cropgroup.quantity),
+                row.integer(ver_cropgroup.quantitypercas),
+                row.integer(ver_cropgroup.quantitypercasgalinha)
 
         );
     }
@@ -124,19 +124,19 @@ public class CropDao extends Dao {
 
         //strftime('%Y-%m-%d'
 
-        Select sumSector = (Select) new Select(sum(T_CROP.crop_totalovos))
-                .from(T_CROP$)
-                .where(strftime("%Y-%m-%d", column(T_CROP.crop_dtreg))).equal(column(VER_CROP_DATE.date));
+        Select sumSector = (Select) new Select(sum(crop.crop_ovos))
+                .from($crop)
+                .where(strftime("%Y-%m-%d", column(crop.crop_dtreg))).equal(column(ver_crop_date.date));
 
         if(id != null)
-            sumSector.and(T_CROP.crop_sector_id).equal(value(id));
+            sumSector.and(crop.crop_sector_id).equal(value(id));
 
 
-        query( select(VER_CROP_DATE.date,
+        query( select(ver_crop_date.date,
                         sumSector.as("sum")
                         )
-                .from(VER_CROP_DATE$)
-                .where(VER_CROP_DATE.date).between(value(dateInicio), value(dateFim))
+                .from($ver_crop_date)
+                .where(ver_crop_date.date).between(date(dateInicio), date(dateFim))
         );
 
         final Map<Integer, String> dayOfWekMap = new LinkedHashMap<>();
@@ -172,7 +172,7 @@ public class CropDao extends Dao {
             @Override
             public boolean accept(SQLRow row) {
 
-                Date date = row.date(VER_CROP_DATE.date);
+                Date date = row.date(ver_crop_date.date);
                 calendar.setTime(date);
                 boolean accept = false;
 

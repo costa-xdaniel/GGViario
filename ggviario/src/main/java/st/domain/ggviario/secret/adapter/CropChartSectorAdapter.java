@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import st.domain.ggviario.secret.R;
-import st.domain.ggviario.secret.items.CropChartSectorItem;
+import st.domain.ggviario.secret.items.CropChartSectorViewHolder;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
 
@@ -21,7 +21,7 @@ public class CropChartSectorAdapter extends RecyclerViewAdapter {
                 new ViewHolderFactory() {
                     @Override
                     public ItemViewHolder factory(View view) {
-                        return new CropChartSectorItem(view);
+                        return new CropChartSectorViewHolder(view);
                     }
                 });
     }

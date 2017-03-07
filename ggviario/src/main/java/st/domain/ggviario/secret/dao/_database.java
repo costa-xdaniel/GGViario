@@ -6,40 +6,39 @@ package st.domain.ggviario.secret.dao;
  * Created by xdata on 12/24/16.
  */
 
+public interface _database {
 
-interface _database {
-
-    String T_USER$ = "T_USER";
-    interface T_USER {
+    String $user = "user";
+    interface user {
         String user_id = "user_id";
         String user_name = "user_name";
         String user_surname = "user_surname";
         String user_accessname = "user_accessname";
         String user_pwd = "user_pwd";
         String user_state = "user_state";
-        String user_state_l = "user_state";
+        String user_dtrge = "user_dtreg";
     }
 
-    String T_SECTOR$ = "T_SECTOR";
-    interface T_SECTOR {
+    String $sector = "sector";
+    interface sector {
         String sector_id = "sector_id";
         String sector_name = "sector_name";
     }
 
-    String T_CROP$ = "T_CROP";
-    interface T_CROP {
+    String $crop = "crop";
+    interface crop {
         String crop_id = "crop_id";
         String crop_sector_id = "crop_sector_id";
-        String crop_totalovos = "crop_totalovos";
         String crop_user_id  = "crop_user_id";
-        String crop_percasovos = "crop_percasovos";
+        String crop_ovos = "crop_ovos";
+        String crop_ovosdefeituosos = "crop_ovosdefeituosos";
         String crop_percasgalinhas = "crop_percasgalinhas";
         String crop_state = "crop_state";
         String crop_dtreg = "crop_dtreg";
     }
 
-    String VER_CROPGROUP$ = "VER_CROPGROUP";
-    interface VER_CROPGROUP {
+    String $ver_cropgroup = "ver_cropgroup";
+    interface ver_cropgroup {
         String date = "date";
         String fdate = "fdate";
         String quantity = "quantity";
@@ -49,23 +48,22 @@ interface _database {
         String numbersector = "numbersector";
     }
 
-    String VER_CROPSECTORDATE$ = "VER_CROPSECTORDATE";
-    interface VER_CROPSECTORDATE {
+    String $ver_cropsectordate = "ver_cropsectordate";
+    interface ver_cropsectordate {
         String date = "date";
         String fdate = "fdate";
         String quantity = "quantity";
         String quantitypercas = "quantitypercas";
         String quantitypercasgalinha = "quantitypercasgalinha";
-
     }
 
-    String VER_CROP_DATE$ = "VER_CROP_DATE";
-    interface VER_CROP_DATE {
+    String $ver_crop_date = "ver_crop_date";
+    interface ver_crop_date {
         String date = "date";
     }
 
-    String T_OBJECTTYPE$ = "T_OBJECTTYPE";
-    interface T_OBJECTTYPE {
+    String $objectype = "objectype";
+    interface objectype {
         String tobj_id = "tobj_id";
         String tobj_desc = "tobj_desc";
         String tobj_state = "tobj_state";
@@ -73,8 +71,8 @@ interface _database {
 
 
     //Objects
-    String T_OBJECT$ = "T_OBJECT";
-    interface T_OBJECT {
+    String $object = "object";
+    interface object {
         String obj_id = "obj_id";
         String obj_tobj_id = "obj_tobj_id";
         String obj_obj_id = "obj_obj_id";
@@ -83,11 +81,11 @@ interface _database {
         String obj_state = "obj_state";
     }
 
-    String VER_OBJECTS$ = "VER_OBJECTS";
-    interface VER_OBJECTS extends T_OBJECT {}
+    String $ver_objects = "ver_objects";
+    interface ver_objects extends object {}
 
-    String T_CLIENT$ = "T_CLIENT";
-    interface  T_CLIENT {
+    String $client = "client";
+    interface client {
         String cli_id = "cli_id";
         String cli_user_id = "cli_user_id";
         String cli_obj_residence = "cli_obj_residence";
@@ -100,34 +98,34 @@ interface _database {
         String cli_document = "cli_document";
     }
 
-    String $VER_STATUS_CLIENT = "VER_STATUS_CLIENT";
-    interface  VER_STATUS_CLIENT extends  T_CLIENT {
+    String $ver_client_status = "ver_client_status";
+    interface ver_client_status extends client {
         String totalcredits = "totalcredits";
         String totalcreditspay = "totalcreditspay";
     }
 
-    String T_GENDER$ = "T_GENDER";
-    interface T_GENDER {
+    String $gender = "gender";
+    interface gender {
         String gender_id = "gender_id";
         String gender_desc = "gender_desc";
     }
 
-    String $T_PRODUCT = "T_PRODUCT";
-    interface T_PRODUCT {
+    String $product = "product";
+    interface product {
         String prod_id = "prod_id";
         String prod_prod_id = "prod_prod_id";
-        String prod_met_id = "prod_met_id";
+        String prod_meas_id = "prod_meas_id";
         String prod_price = "prod_price";
         String prod_name = "prod_name";
-        String prod_detais = "prod_detais";
+        String prod_detail = "prod_detail";
         String prod_stock = "prod_stock";
         String prod_scalesuper = "prod_scalesuper";
         String prod_state = "prod_state";
         String prod_dtreg = "prod_dtreg";
     }
 
-    String $CREDIT = "T_CREDIT";
-    interface T_CREDIT {
+    String $credit = "credit";
+    interface credit {
         String credi_id = "credi_id";
         String credi_user_id = "credi_user_id";
         String credi_cli_id = "credi_cli_id";
@@ -135,30 +133,51 @@ interface _database {
         String credi_valuepago = "credi_valuepago";
         String credi_dtfinalizar = "credi_dtfinalizar";
         String credi_dtfim = "credi_dtfim";
+
+        /**
+         * Credits state the status of credits.
+         * <table border="1">
+         *     <tr> <th>States</th> <th>Decisions</th> </tr>
+         *     <tr><td> 1 </td> <td> Ativo (Sem nem um pagamento) </td> </tr>
+         *     <tr><td> 2 </td> <td> Em pagamento (Ativo com alguns pagamento ja feito) </td> </tr>
+         *     <tr><td> 0 </td> <td> Fechado  (Credito pago e fechado) </td> </tr>
+         *     <tr><td> -1 </td> <td> Anulado  (Credito foi anulado) </td> </tr>
+         * </table>
+         */
         String credi_state = "credi_state";
         String credi_dtreg = "credi_dtreg";
     }
 
-    String $T_CREDITPRODUCT = "T_CREDITPRODUCT";
-    interface  T_CREDITPRODUCT {
+    String $creditproduct = "creditproduct";
+    interface creditproduct {
         String crediprod_id = "crediprod_id";
         String crediprod_prod_id = "crediprod_prod_id";
         String crediprod_credi_id = "crediprod_credi_id";
         String crediprod_user_id = "crediprod_user_id";
         String crediprod_state = "crediprod_state";
-        String crediprod_value = "crediprod_value";
+        String crediprod_price = "crediprod_price";
         String crediprod_dtreg = "crediprod_dtreg";
         String crediprod_quantity = "crediprod_quantity";
+        String crediprod_meas_id = "crediprod_meas_id";
+        String crediprod_pricequantity = "crediprod_pricequantity";
     }
 
-    String $T_PRODUCTPRICE = "T_PRODUCTPRICE";
-    interface T_PRODUCTPRICE {
+    String $productprice = "productprice";
+    interface productprice {
         String prodprice_id = "prodprice_id";
         String prodprice_prod_id = "prodprice_prod_id";
         String prodprice_user_id = "prodprice_user_id";
+        String prodprice_meas_id = "prodprice_meas_id";
+        String prodprice_quantity = "prodprice_quantity";
         String prodprice_price = "prodprice_price";
         String prodprice_dtreg = "prodprice_dtreg";
         String prodprice_state = "prodprice_state";
     }
 
+    String $measure = "measure";
+    interface measure {
+        String meas_id = "meas_id";
+        String meas_cod = "meas_cod";
+        String meas_name = "meas_name";
+    }
 }

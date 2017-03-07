@@ -132,7 +132,7 @@ public class MainHomeAdapter extends RecyclerViewAdapter {
         }
 
         @Override
-        public void bind( ItemDataSet dataSet, int currentAdapterPosition, int totalAdapterItem ) {
+        public void onBind(ItemDataSet dataSet, int currentAdapterPosition, int totalDataSet) {
             DataOperation values = (DataOperation) dataSet;
             int cardColor =  this.context.getResources().getColor(values.color);
             this.imageOperation.setImageResource(values.image);

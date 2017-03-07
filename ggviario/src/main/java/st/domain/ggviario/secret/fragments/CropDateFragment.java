@@ -97,26 +97,26 @@ public class CropDateFragment extends LogFragment implements CropAdapter.OpenCro
             if(Calendar.getInstance().get(Calendar.YEAR) == auxDate.get(Calendar.YEAR)
                     && Calendar.getInstance().get(Calendar.MONTH) == auxDate.get(Calendar.MONTH)
                     && this.adapter.getItemCount() == 0 ) {
-                adapter.add(new TextSeparatorItem.TextSeparatorDataSet(R.string.this_month));
+                adapter.addItem(new TextSeparatorItem.TextSeparatorDataSet(R.string.this_month));
             }
             else if (mesPast.get(Calendar.YEAR) == auxDate.get(Calendar.YEAR)
                     && mesPast.get(Calendar.MONTH) ==  auxDate.get(Calendar.MONTH)
                     && iCountMesPast == 0){
 
                 iCountMesPast ++;
-                adapter.add(new TextSeparatorItem.TextSeparatorDataSet(R.string.past_month));
+                adapter.addItem(new TextSeparatorItem.TextSeparatorDataSet(R.string.past_month));
             }
             else if(lastDate.get(Calendar.YEAR) == auxDate.get(Calendar.YEAR)
                     && lastDate.get(Calendar.MONTH) != auxDate.get(Calendar.MONTH)) {
                 String text = monthFormatter.format(auxDate.getTime());
-                adapter.add(new TextSeparatorItem.TextSeparatorDataSet(text));
+                adapter.addItem(new TextSeparatorItem.TextSeparatorDataSet(text));
             }
             else if(lastDate.get(Calendar.YEAR) != auxDate.get(Calendar.YEAR)) {
                 String text = yearFormatter.format(auxDate.getTime());
-                adapter.add(new TextSeparatorItem.TextSeparatorDataSet(text));
+                adapter.addItem(new TextSeparatorItem.TextSeparatorDataSet(text));
             }
 
-            adapter.add(new CropAdapter.CropDataSet(crop, this.context));
+            adapter.addItem(new CropAdapter.CropDataSet(crop, this.context));
             lastDate = auxDate;
         }
         //daoCrop.close();

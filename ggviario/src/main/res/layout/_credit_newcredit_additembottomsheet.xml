@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinner_chose_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@+id/spinner_chose_product"
+        >
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_chose_measure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentStart="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_credit_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:hint="@string/product_price"
+            android:layout_marginEnd="32dp"
+            android:gravity="end"
+            />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/a"
+        android:layout_alignParentStart="true"
+        >
+        <EditText
+            android:id="@+id/ed_credit_quantity"
+            android:paddingStart="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/quantity"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:maxLines="1"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_credit_price_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end|bottom"
+        android:text="900 000 000, 00"
+        android:layout_alignBottom="@+id/b"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        />
+
+    <Button
+        android:id="@+id/bt_credit_add_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:layout_below="@+id/tv_credit_price_quantity"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        />
+
+</RelativeLayout>

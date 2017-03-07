@@ -1,5 +1,8 @@
 package st.domain.ggviario.secret.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import st.domain.support.android.util.BaseCharSequence;
 
 /**
@@ -7,7 +10,7 @@ import st.domain.support.android.util.BaseCharSequence;
  * Created by dchost on 03/02/17.
  */
 
-public class ObjectItem  extends BaseCharSequence {
+public class ObjectItem  extends BaseCharSequence implements Parcelable {
 
     private int id;
     private String desc;
@@ -31,6 +34,33 @@ public class ObjectItem  extends BaseCharSequence {
         this.superObjectItem = superObjectItem;
     }
 
+
+    protected ObjectItem(Parcel in) {
+        this.id = in.readInt();
+        this.desc = in.readString();
+        this.itemType = in.readParcelable( ObjectItemType.class.getClassLoader() );
+        this.superObjectItem = in.readParcelable(ObjectItem.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt( this.id );
+        dest.writeString( this.desc );
+        dest.writeParcelable( this.itemType, flags );
+        dest.writeParcelable( this.superObjectItem, flags );
+    }
+
+    public static final Creator<ObjectItem> CREATOR = new Creator<ObjectItem>() {
+        @Override
+        public ObjectItem createFromParcel(Parcel in) {
+            return new ObjectItem(in);
+        }
+
+        @Override
+        public ObjectItem[] newArray(int size) {
+            return new ObjectItem[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -66,5 +96,10 @@ public class ObjectItem  extends BaseCharSequence {
                 && ((ObjectItem) obj).desc.equals(this.desc)
                 && ((ObjectItem) obj).itemType.equals(this.itemType)
                 ;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

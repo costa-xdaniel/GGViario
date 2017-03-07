@@ -55,7 +55,7 @@ public class CropSectorAdapter extends RecyclerViewAdapter {
         }
 
         @Override
-        public void bind( ItemDataSet dataSet, int currentAdapterPosition, int totalAdapterItem ) {
+        public void onBind(ItemDataSet dataSet, int currentAdapterPosition, int totalDataSet) {
             if(dataSet instanceof CropSectorDataSet) {
                 this.dataSet = (CropSectorDataSet) dataSet;
                 this.prepare();

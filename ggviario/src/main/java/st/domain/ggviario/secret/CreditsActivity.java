@@ -1,17 +1,11 @@
 package st.domain.ggviario.secret;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.SharedElementCallback;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.transition.ChangeBounds;
-import android.transition.Explode;
-import android.transition.Slide;
-import android.transition.Transition;
 import android.view.View;
 
 import st.domain.ggviario.secret.adapter.PagerAdapter;
@@ -30,7 +24,7 @@ public class CreditsActivity extends AbstractActivityToolbarSlidingLayout {
 
     @Override
     protected int getContentView() {
-        return R.layout._credits;
+        return R.layout._client;
     }
 
     @Override
@@ -88,7 +82,7 @@ public class CreditsActivity extends AbstractActivityToolbarSlidingLayout {
     }
 
     @Override
-    protected android.support.v4.view.PagerAdapter getAdapter() {
+    protected android.support.v4.view.PagerAdapter getAdapter(Bundle savedInstanceState) {
         PagerAdapter adapter = new PagerAdapter(this.getSupportFragmentManager(), this);
 
         CreditsClientFragment creditsClientFragment = new CreditsClientFragment();

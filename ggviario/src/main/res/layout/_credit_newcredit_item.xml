@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_marginTop="1dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_credit_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product"
+        android:textSize="16sp"
+        android:textColor="@color/textPrimary"
+        android:layout_alignParentTop="true"
+        />
+
+    <TextView
+        android:id="@+id/tv_credit_quantity"
+        android:layout_below="@+id/tv_credit_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quantity"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_credit_price_quantity"
+        android:layout_below="@+id/tv_credit_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textSize="14sp"
+        android:layout_toStartOf="@+id/bt_credit_item_remove"
+
+        />
+
+    <ImageButton
+        android:id="@+id/bt_credit_item_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_centerVertical="true"
+        android:padding="8dp"
+        />
+</RelativeLayout>

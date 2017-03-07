@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.dao.CreditsDao;
 import st.domain.ggviario.secret.dao.Dao;
-import st.domain.ggviario.secret.items.CreditsClinetDetaisCreditsViewHolder;
+import st.domain.ggviario.secret.items.ClientDetailCreditsViewHolder;
+import st.domain.ggviario.secret.model.Client;
 import st.domain.ggviario.secret.model.Credits;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
@@ -32,6 +33,7 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
     private Context context;
     private RecyclerViewAdapter adapter;
     private CreditsDao creditsDao;
+    private Client client;
 
 
     @Override
@@ -43,7 +45,13 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.rootView = inflater.inflate( R.layout._credits_clients_detais_credits, container, false );
+
+        if( savedInstanceState == null )
+            savedInstanceState = getArguments();
+
+        this.client = savedInstanceState.getParcelable( "client" );
+
+        this.rootView = inflater.inflate( R.layout.recycler_view, container, false );
         this.recyclerView = (RecyclerView) this.rootView.findViewById( R.id.rv );
 
         //RECYCLER VIEW AREA
@@ -52,15 +60,14 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
         this.adapter = new RecyclerViewAdapter( this.context );
         this.recyclerView.setLayoutManager( layoutParams );
 
-        this.adapter.addItemFactory(R.layout._credits_clients_detais_credits_item, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.addItemFactory(R.layout._credit_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
-                return new CreditsClinetDetaisCreditsViewHolder(view);
+                return new ClientDetailCreditsViewHolder(view);
             }
         });
 
         this.recyclerView.setAdapter( this.adapter );
-
 
 
         this.populateRecyclerView( );
@@ -68,10 +75,10 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
     }
 
     private void populateRecyclerView() {
-        this.creditsDao.onLoad(new Dao.OnLoadAllData<Credits>() {
+        this.creditsDao.loadCreditClient( this.client, new Dao.OnLoadAllData<Credits>() {
             @Override
             protected void onLoadData(Credits credits, SQLRow row) {
-                adapter.add( new CreditsClinetDetaisCreditsViewHolder.CreditsClientDetailCreditsDataSet(credits));
+                adapter.addItem( new ClientDetailCreditsViewHolder.CreditsClientDetailCreditsDataSet(credits));
             }
         });
     }

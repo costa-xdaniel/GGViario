@@ -55,7 +55,7 @@ public class CropActivity extends AbstractActivityToolbarSlidingLayout {
         super.onCreate(savedInstanceState);
 
         // FloatingActionButton
-        this.floatingActionButton = (FloatingActionButton) this.findViewById(R.id.fab_new_crop);
+        this.floatingActionButton = (FloatingActionButton) this.findViewById(R.id.fab);
         this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +71,7 @@ public class CropActivity extends AbstractActivityToolbarSlidingLayout {
     }
 
     @Override
-    protected android.support.v4.view.PagerAdapter getAdapter() {
+    protected android.support.v4.view.PagerAdapter getAdapter(Bundle savedInstanceState) {
 
         PagerAdapter pagerAdapter = new PagerAdapter(this.getSupportFragmentManager(), this);
 

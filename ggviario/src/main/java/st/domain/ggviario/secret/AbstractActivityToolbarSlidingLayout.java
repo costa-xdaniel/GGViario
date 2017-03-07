@@ -16,21 +16,21 @@ public abstract class AbstractActivityToolbarSlidingLayout extends AbstractActiv
     protected abstract @LayoutRes int getContentView();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         // INIT
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
 
 
         //View Pager
         this.pager = getViewPager();
         this.slidingTabLayout = getSlidingLayout();
-        this.slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        this.slidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white));
+        this.slidingTabLayout.setBackgroundColor( getResources().getColor( R.color.colorPrimary ) );
+        this.slidingTabLayout.setSelectedIndicatorColors( getResources().getColor( R.color.white ) );
 
-        this.pager.setAdapter(getAdapter());
-        this.slidingTabLayout.setCustomTabView(getCustomViewLayout(), getCustomViewLayoutId());
+        this.pager.setAdapter( getAdapter( savedInstanceState ) );
+        this.slidingTabLayout.setCustomTabView( getCustomViewLayout(), getCustomViewLayoutId() );
         this.onPreApplyPagerIntoSlidingTabLayout( slidingTabLayout, pager );
-        this.slidingTabLayout.setViewPager(this.pager);
+        this.slidingTabLayout.setViewPager( this.pager );
     }
 
     protected void onPreApplyPagerIntoSlidingTabLayout(SlidingTabLayout slidingTabLayout, ViewPager pager) {}
@@ -39,7 +39,7 @@ public abstract class AbstractActivityToolbarSlidingLayout extends AbstractActiv
 
     protected abstract @NonNull SlidingTabLayout getSlidingLayout();
 
-    protected abstract @NonNull android.support.v4.view.PagerAdapter getAdapter();
+    protected abstract @NonNull android.support.v4.view.PagerAdapter getAdapter( Bundle savedInstanceState );
 
     public @LayoutRes int getCustomViewLayout() {
         return R.layout.tab_whit;

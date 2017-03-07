@@ -31,7 +31,7 @@ public abstract class AbstractActivityToolbar extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.setContentView(getContentView());
+        super.setContentView( getContentView() );
 
 
         //Toolbar
@@ -39,7 +39,7 @@ public abstract class AbstractActivityToolbar extends AppCompatActivity {
         if(prepareToolbar()) {
             Toolbar toolbar = getPrincipalToolbar();
             toolbar.setTitle(getActivityName());
-            toolbar.inflateMenu(getMenu());
+            toolbar.inflateMenu( getMenu() );
             //this.toolbar.setLogo();
             //this.toolbar.setSubtitle();
 
@@ -83,8 +83,8 @@ public abstract class AbstractActivityToolbar extends AppCompatActivity {
         return this.getMenuMapper().menuAction(item);
     }
 
-    private int getMenu() {
-        return R.menu.menu_crop_new;
+    protected int getMenu() {
+        return R.menu.menu;
     }
 
     protected int getActivityName() {

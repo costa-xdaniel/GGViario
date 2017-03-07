@@ -21,7 +21,7 @@ import st.domain.ggviario.secret.model.ObjectItem;
  * Created by dchost on 03/02/17.
  */
 
-public class CreditsClientNewActivity extends AbstractActivityToolbarNew {
+public class CreditsClientNewActivity extends AbstractActivityToolbarDone {
 
     private EditText edName;
     private EditText edSurnname;
@@ -36,7 +36,7 @@ public class CreditsClientNewActivity extends AbstractActivityToolbarNew {
 
     @Override
     protected int getContentView() {
-        return R.layout._credits_clients_new;
+        return R.layout._client_new;
     }
 
     @Override

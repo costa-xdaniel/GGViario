@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,7 +38,7 @@ public class ObjectDao extends Dao {
     private void loadTypes() {
         query(
                 select("*")
-                .from(T_OBJECTTYPE$)
+                .from($objectype)
         );
 
         this.objectItemTypeMap.clear();
@@ -48,7 +47,7 @@ public class ObjectDao extends Dao {
                     @Override
                     public boolean accept(SQLRow row) {
                         ObjectItemType item = mountObjectItemType( row );
-                        objectItemTypeMap.put( row.integer( T_OBJECTTYPE.tobj_id ), item );
+                        objectItemTypeMap.put( row.integer( objectype.tobj_id ), item );
                         return true;
                     }
                 }
@@ -57,9 +56,9 @@ public class ObjectDao extends Dao {
 
     private  ObjectItemType mountObjectItemType( SQLRow row ) {
         return new ObjectItemType(
-                row.integer(T_OBJECTTYPE.tobj_id),
-                row.string(T_OBJECTTYPE.tobj_desc),
-                row.integer(T_OBJECTTYPE.tobj_state)
+                row.integer(objectype.tobj_id),
+                row.string(objectype.tobj_desc),
+                row.integer(objectype.tobj_state)
         );
     }
 
@@ -76,16 +75,16 @@ public class ObjectDao extends Dao {
     public ObjectItem createNewObject( ObjectItem objectItem ) {
 
         execute(
-                insertInto(T_OBJECT$)
+                insertInto($object)
                 .columns(
-                        T_OBJECT.obj_desc,
-                        T_OBJECT.obj_obj_id,
-                        T_OBJECT.obj_user_id,
-                        T_OBJECT.obj_tobj_id )
+                        object.obj_desc,
+                        object.obj_obj_id,
+                        object.obj_user_id,
+                        object.obj_tobj_id )
                 .values(
                         objectItem.getDesc(),
                         (objectItem.getSuperObjectItem() == null ? null : objectItem.getSuperObjectItem().getId()),
-                        UserDao.geUser(this.getContext()).getId(),
+                        getCurrentUser().getId(),
                         objectItem.getItemType().getId()
                 )
         );
@@ -101,9 +100,9 @@ public class ObjectDao extends Dao {
 
         query(
                 select("*")
-                .from(VER_OBJECTS$)
-                .where(upper(column(VER_OBJECTS.obj_desc))).equal(upper(desc))
-                    .and(VER_OBJECTS.obj_tobj_id).equal(value(typeId))
+                .from($ver_objects)
+                .where(upper(column(ver_objects.obj_desc))).equal(upper(desc))
+                    .and(ver_objects.obj_tobj_id).equal(value(typeId))
         );
 
         return  this.instance();
@@ -118,8 +117,8 @@ public class ObjectDao extends Dao {
     public ObjectItem find(int id) {
         query(
                 select("*")
-                .from(VER_OBJECTS$)
-                .where(VER_OBJECTS.obj_id).equal(value(id))
+                .from($ver_objects)
+                .where(ver_objects.obj_id).equal(value(id))
 
         );
 
@@ -151,7 +150,7 @@ public class ObjectDao extends Dao {
         final List<ObjectItem> list = new LinkedList<>();
         query(
                 select("*")
-                    .from(VER_OBJECTS$)
+                    .from($ver_objects)
         );
         this.objectItemMap.clear();
 
@@ -159,7 +158,7 @@ public class ObjectDao extends Dao {
                     @Override
                     public boolean accept(SQLRow row) {
                     ObjectItem objectItem = null;
-                    if(! ObjectDao.this.objectItemMap.containsKey(row.integer(VER_OBJECTS.obj_id)) ) {
+                    if(! ObjectDao.this.objectItemMap.containsKey(row.integer(ver_objects.obj_id)) ) {
                         objectItem = ObjectDao.this.mount(row);
                     }
 
@@ -180,15 +179,15 @@ public class ObjectDao extends Dao {
     protected @NonNull ObjectItem mount(SQLRow row) {
 
         ObjectItem superObjectItem = null;
-        if( row.integer(VER_OBJECTS.obj_obj_id) != null ) {
-            superObjectItem = this.get(row.integer(VER_OBJECTS.obj_obj_id));
+        if( row.integer(ver_objects.obj_obj_id) != null ) {
+            superObjectItem = this.get(row.integer(ver_objects.obj_obj_id));
         }
 
 
         ObjectItem objectItem = new ObjectItem(
                 row.integer("obj_id"),
-                row.string(VER_OBJECTS.obj_desc),
-                getType(row.integer(VER_OBJECTS.obj_tobj_id)),
+                row.string(ver_objects.obj_desc),
+                getType(row.integer(ver_objects.obj_tobj_id)),
                 superObjectItem
         );
 
@@ -211,17 +210,17 @@ public class ObjectDao extends Dao {
         return this.objectItemTypeMap.get(integer);
     }
 
-    public Collection<? extends ObjectItem> loadTypeDocuments() {
+    public List<? extends ObjectItem> loadTypeDocuments() {
         return  this.loadObjectsOf(OBJECT_TYPE_DOCUMENTS);
     }
 
-    private Collection<? extends ObjectItem> loadObjectsOf(int objectTypeDocuments) {
+    private List<? extends ObjectItem> loadObjectsOf(int objectTypeDocuments) {
         final List<ObjectItem>  listOf = new LinkedList<>();
 
         query(
                 select("*")
-                .from(T_OBJECT$)
-                .where( VER_OBJECTS.obj_tobj_id ).equal( value(objectTypeDocuments) )
+                .from($object)
+                .where( ver_objects.obj_tobj_id ).equal( value(objectTypeDocuments) )
         );
 
         onQueryResult(new OnQueryResult() {
@@ -238,9 +237,9 @@ public class ObjectDao extends Dao {
     public ObjectItem findResidence(String residence) {
         query(
                 select("*")
-                .from(VER_OBJECTS$)
-                .where(VER_OBJECTS.obj_tobj_id).equal(value(OBJECT_RESIDENCE))
-                    .and(upper(column(VER_OBJECTS.obj_desc))).equal(upper(residence))
+                .from($ver_objects)
+                .where(ver_objects.obj_tobj_id).equal(value(OBJECT_RESIDENCE))
+                    .and(upper(column(ver_objects.obj_desc))).equal(upper(residence))
                 .limit(1)
         );
 

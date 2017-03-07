@@ -3,7 +3,7 @@ package st.domain.ggviario.secret.adapter;
 import android.content.Context;
 import android.view.View;
 
-import st.domain.ggviario.secret.items.CropChartLineItem;
+import st.domain.ggviario.secret.items.CropChartLineViewHolder;
 import st.domain.ggviario.secret.R;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
@@ -20,7 +20,7 @@ public class MainReportAdapter extends RecyclerViewAdapter {
         super.addItemFactory(R.layout._crop_report_chart, new ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
-                return new CropChartLineItem(view);
+                return new CropChartLineViewHolder(view);
             }
         });
     }

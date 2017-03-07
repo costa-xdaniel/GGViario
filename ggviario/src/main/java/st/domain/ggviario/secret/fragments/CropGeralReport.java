@@ -22,7 +22,7 @@ import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.MainReportAdapter;
 import st.domain.ggviario.secret.dao.CropDao;
 import st.domain.ggviario.secret.dao.SectorDao;
-import st.domain.ggviario.secret.items.CropChartLineItem;
+import st.domain.ggviario.secret.items.CropChartLineViewHolder;
 import st.domain.ggviario.secret.model.Sector;
 import st.domain.ggviario.secret.references.RColors;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
@@ -79,8 +79,8 @@ public class CropGeralReport extends Fragment
 
         Log.i( "APP.GGVIARIO", "-> CropGeralReport.populate" );
 
-        CropChartLineItem.ChartDataSet chartDatSet;
-        this.adapter.add(chartDatSet = new CropChartLineItem.ChartDataSet());
+        CropChartLineViewHolder.ChartDataSet chartDatSet;
+        this.adapter.addItem(chartDatSet = new CropChartLineViewHolder.ChartDataSet());
 
         SectorDao daoSector = new SectorDao(this.getContext());
         CropDao daoCrop = new CropDao(this.getContext());
@@ -97,12 +97,12 @@ public class CropGeralReport extends Fragment
         Log.i( "APP.GGVIARIO", "last-day-of-mont: "+dateUtil.lastDayOfMonth() );
 
         List<Point> list = daoCrop.reportCropSectorDaily(null, CropDao.ReportType.WEEK, dateUtil.firtDayOfWeek(), dateUtil.lastDayOfWeek());
-        chartDatSet.addLine(new CropChartLineItem.ChartDataLine(R.color.colorAccent, new Sector(null, "Total"), list));
+        chartDatSet.addLine(new CropChartLineViewHolder.ChartDataLine(R.color.colorAccent, new Sector(null, "Total"), list));
 
         for(Sector sector: daoSector.loadSector()){
             list = daoCrop.reportCropSectorDaily(sector.getId(), CropDao.ReportType.WEEK, dateUtil.firtDayOfWeek(), dateUtil.lastDayOfWeek());
             int color = RColors.switchColor(RColors.SECTOR_COLORS, sector.getId());
-            chartDatSet.addLine(new CropChartLineItem.ChartDataLine(color, sector, list));
+            chartDatSet.addLine(new CropChartLineViewHolder.ChartDataLine(color, sector, list));
         }
 
         //daoCrop.close();

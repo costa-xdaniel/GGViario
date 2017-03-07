@@ -20,7 +20,7 @@ import st.domain.ggviario.secret.references.RMap;
  */
 
 // TextStepper, ProgressStepper, DotStepper, TabStepper
-public class CropNewActivity extends AbstractActivityToolbarNew {
+public class CropNewActivity extends AbstractActivityToolbarDone {
 
     AppCompatSpinner spinner;
     private EditText edQuantity;
@@ -44,7 +44,7 @@ public class CropNewActivity extends AbstractActivityToolbarNew {
         this.edQuantityPercasGalinha = (EditText) this.findViewById(R.id.ed_crop_quantity_percas_galinha);
 
         this.sectorAdapter = new SimpleSpinnerAdapter(this);
-        this.sectorAdapter.add(getString(R.string.select_sector));
+        this.sectorAdapter.add( getString(R.string.select_sector) );
         SectorDao sectorDao = new SectorDao(this);
         this.sectorAdapter.addAll(sectorDao.loadSector());
         this.spinner.setAdapter(this.sectorAdapter);
@@ -55,10 +55,6 @@ public class CropNewActivity extends AbstractActivityToolbarNew {
         return R.string.new_client;
     }
 
-    @Override
-    public int doneId() {
-        return R.id.opt_done;
-    }
 
     @Override
     protected boolean onDoneAction() {

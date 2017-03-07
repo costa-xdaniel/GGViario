@@ -15,9 +15,7 @@ import st.domain.ggviario.secret.CreditsActivity;
 import st.domain.ggviario.secret.CropActivity;
 import st.domain.ggviario.secret.Despesas;
 import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.model.ItemFragment;
 import st.domain.ggviario.secret.R;
-import st.domain.ggviario.secret.references.RMap;
 import st.domain.ggviario.secret.adapter.MainHomeAdapter;
 
 import java.util.List;
@@ -62,9 +60,9 @@ public class MainHomeFragment extends Fragment
                 .name("Credito")
                 .activity(CreditsActivity.class);
 
-        this.supportAdapter.add(cropOperation);
-        this.supportAdapter.add(despesaOperation);
-        this.supportAdapter.add(creditsOperation);
+        this.supportAdapter.addItem(cropOperation);
+        this.supportAdapter.addItem(despesaOperation);
+        this.supportAdapter.addItem(creditsOperation);
     }
 
     @Nullable

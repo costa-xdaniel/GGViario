@@ -2,6 +2,7 @@ package st.domain.ggviario.secret.dao;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -18,27 +19,32 @@ import st.domain.support.android.sql.SQLRow;
  * Created by dchost on 04/02/17.
  */
 
-public class ClientDao extends Dao <Client>  {
+public class ClientDao extends Dao<Client> {
 
     private ObjectDao objectDao;
-    private Map<Integer, Gender> mapGender;
+    private Map< Integer, Gender > mapGender;
+    private Map< Integer, Client > mapClient;
 
     public ClientDao(Context context) {
         super(context);
+
         this.mapGender = new LinkedHashMap<>();
         this.objectDao = new ObjectDao(context);
+        this.mapClient = new LinkedHashMap<>();
         this.loadGenders();
     }
 
     private void loadGenders() {
         query(select("*")
-                .from(T_GENDER$)
+                .from($gender)
         );
 
         onQueryResult(new OnAllQueryResults() {
             @Override
-            protected void onRow(SQLRow row) {
-                Gender gender = mountGender(row);
+            protected void onRow( SQLRow row ) {
+                Gender gender = mountGender( row );
+
+                Log.i( "APP.GGVIARIO", "onRow: (gender) "+gender );
                 mapGender.put(gender.getId(), gender);
             }
         });
@@ -53,7 +59,7 @@ public class ClientDao extends Dao <Client>  {
         final List<Client> list = new LinkedList<>();
 
         query( select("*")
-                 .from(T_CLIENT$)
+                 .from($client)
         );
 
         onQueryResult(new OnAllQueryResults() {
@@ -70,36 +76,41 @@ public class ClientDao extends Dao <Client>  {
 
     private @NonNull Gender mountGender(SQLRow row) {
         return new Gender(
-                row.integer(T_GENDER.gender_id),
-                row.string(T_GENDER.gender_desc)
+                row.integer(gender.gender_id),
+                row.string(gender.gender_desc)
         );
     }
 
     private  @NonNull Client mount (SQLRow row) {
-        return new Client(
-                row.integer(T_CLIENT.cli_id),
-                row.string(T_CLIENT.cli_name),
-                row.string(T_CLIENT.cli_surname),
-                this.objectDao.get(row.integer(T_CLIENT.cli_obj_residence)),
-                this.objectDao.get(row.integer(T_CLIENT.cli_obj_typedocument)),
-                row.string(T_CLIENT.cli_contact),
-                row.string(T_CLIENT.cli_mail),
-                row.string(T_CLIENT.cli_document),
-                this.mapGender.get(row.integer(T_CLIENT.cli_gender_id))
+        Client vClient = new Client(
+
+                row.integer(client.cli_id),
+                row.string(client.cli_name),
+                row.string(client.cli_surname),
+                this.objectDao.get(row.integer(client.cli_obj_residence)),
+                this.objectDao.get(row.integer(client.cli_obj_typedocument)),
+                row.string(client.cli_contact),
+                row.string(client.cli_mail),
+                row.string(client.cli_document),
+                this.mapGender.get(row.integer(client.cli_gender_id))
+
         );
+
+        this.mapClient.put( vClient.getId(), vClient );
+        return vClient;
     }
 
     public Client createNewClient(Client client) {
         execute(
-                insertInto(T_CLIENT$) .columns(
-                        T_CLIENT.cli_name,
-                        T_CLIENT.cli_surname,
-                        T_CLIENT.cli_gender_id,
-                        T_CLIENT.cli_obj_residence,
-                        T_CLIENT.cli_contact,
-                        T_CLIENT.cli_mail,
-                        T_CLIENT.cli_obj_typedocument,
-                        T_CLIENT.cli_document
+                insertInto($client) .columns(
+                        _database.client.cli_name,
+                        _database.client.cli_surname,
+                        _database.client.cli_gender_id,
+                        _database.client.cli_obj_residence,
+                        _database.client.cli_contact,
+                        _database.client.cli_mail,
+                        _database.client.cli_obj_typedocument,
+                        _database.client.cli_document
                 ) .values(
                         client.getName(),
                         client.getSurname(),
@@ -116,8 +127,8 @@ public class ClientDao extends Dao <Client>  {
 
         query(
                 select("*")
-                .from( T_CLIENT$ )
-                .where( T_CLIENT.cli_id).equal( value( id ) )
+                .from($client)
+                .where( _database.client.cli_id).equal( value( id ) )
                 .limit(1)
         );
 
@@ -130,10 +141,9 @@ public class ClientDao extends Dao <Client>  {
         return null;
     }
 
-    @Override
     public void onLoad(final OnLoadData<Client> onLoadData) {
         query( select("*")
-                .from($VER_STATUS_CLIENT)
+                .from($ver_client_status)
         );
 
         onQueryResult(new OnQueryResult() {

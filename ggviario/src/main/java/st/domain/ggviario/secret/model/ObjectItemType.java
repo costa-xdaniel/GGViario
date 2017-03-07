@@ -1,5 +1,8 @@
 package st.domain.ggviario.secret.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import st.domain.support.android.util.BaseCharSequence;
 
 /**
@@ -7,7 +10,7 @@ import st.domain.support.android.util.BaseCharSequence;
  * Created by dchost on 03/02/17.
  */
 
-public class ObjectItemType extends BaseCharSequence {
+public class ObjectItemType extends BaseCharSequence implements Parcelable {
 
     private int id;
     private String desc;
@@ -22,6 +25,31 @@ public class ObjectItemType extends BaseCharSequence {
         this.desc = desc;
         this.state = state;
     }
+
+    protected ObjectItemType(Parcel in) {
+        this.id = in.readInt();
+        this.desc = in.readString();
+        this.state = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt( this.id );
+        dest.writeString( this.desc) ;
+        dest.writeInt( this.state );
+    }
+
+    public static final Creator<ObjectItemType> CREATOR = new Creator<ObjectItemType>() {
+        @Override
+        public ObjectItemType createFromParcel(Parcel in) {
+            return new ObjectItemType(in);
+        }
+
+        @Override
+        public ObjectItemType[] newArray(int size) {
+            return new ObjectItemType[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -43,4 +71,10 @@ public class ObjectItemType extends BaseCharSequence {
                 && ((ObjectItemType) obj).id == this.id
                 && ((ObjectItemType) obj).desc.equals(this.desc);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
 }

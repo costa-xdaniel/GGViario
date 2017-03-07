@@ -8,14 +8,13 @@ import java.util.List;
 import st.domain.ggviario.secret.model.Sector;
 import st.domain.support.android.sql.OnQueryResult;
 import st.domain.support.android.sql.SQLRow;
-import st.domain.support.android.sql.builder.Select;
 
 /**
  *
  * Created by xdata on 12/29/16.
  */
 
-public class SectorDao extends Dao{
+public class SectorDao extends Dao {
 
     public SectorDao(Context context) {
         super(context);
@@ -26,7 +25,7 @@ public class SectorDao extends Dao{
         final LinkedList<Sector> listSector = new LinkedList<Sector>();
 
         this.query(select(ALL)
-                    .from(T_SECTOR$)
+                    .from($sector)
         );
 
         onQueryResult(new OnQueryResult() {
@@ -43,6 +42,6 @@ public class SectorDao extends Dao{
 
 
     static Sector mountSector(SQLRow row) {
-        return new Sector(row.integer(T_SECTOR.sector_id), row.string(T_SECTOR.sector_name));
+        return new Sector(row.integer(sector.sector_id), row.string(sector.sector_name));
     }
 }

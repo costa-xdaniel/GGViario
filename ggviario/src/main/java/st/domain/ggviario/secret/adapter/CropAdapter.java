@@ -82,7 +82,7 @@ public class CropAdapter extends RecyclerViewAdapter {
          * @param dataSet
          */
         @Override
-        public void bind( ItemDataSet dataSet, int currentAdapterPosition, int totalAdapterItem ) {
+        public void onBind(ItemDataSet dataSet, int currentAdapterPosition, int totalDataSet) {
 
             this.dataSet = (CropDataSet) dataSet;
             this.tvDate.setText(this.dataSet.date());

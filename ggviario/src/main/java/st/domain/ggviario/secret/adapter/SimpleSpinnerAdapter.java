@@ -22,7 +22,6 @@ import st.domain.ggviario.secret.R;
 
 public class SimpleSpinnerAdapter extends BaseAdapter {
 
-
     private List<CharSequence> list;
     private  Context context;
     private OnItemCreated onItemCreated;
@@ -33,7 +32,7 @@ public class SimpleSpinnerAdapter extends BaseAdapter {
     }
 
     public SpinnerAdapter add (CharSequence item) {
-        this.list.add(item);
+        this.list.add( item );
         return this;
     }
 
@@ -41,8 +40,8 @@ public class SimpleSpinnerAdapter extends BaseAdapter {
         this.onItemCreated = onItemCreated;
     }
 
-    public void addAll (Collection<? extends CharSequence> items) {
-        this.list.addAll(items);
+    public void addAll (List<? extends  CharSequence > items) {
+        this.list.addAll( items );
     }
 
     public CharSequence get(int index ) {
@@ -79,6 +78,10 @@ public class SimpleSpinnerAdapter extends BaseAdapter {
 
     public OnItemCreated getOnItemCreated() {
         return onItemCreated;
+    }
+
+    public void clear() {
+        this.list.clear();
     }
 
     public interface OnItemCreated {

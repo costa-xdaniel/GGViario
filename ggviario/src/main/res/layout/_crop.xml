@@ -11,7 +11,7 @@
         layout="@layout/toolbar_view_pager"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_new_crop"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:fabSize="normal"

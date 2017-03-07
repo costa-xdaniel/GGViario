@@ -89,7 +89,7 @@ public class TextSeparatorItem {
             this.context = this.itemView.getContext();
         }
 
-        public void bind( ItemDataSet dataSet, int currentAdapterPosition, int totalAdapterItem ) {
+        public void onBind(ItemDataSet dataSet, int currentAdapterPosition, int totalDataSet) {
             TextView tvText = (TextView) itemView.findViewById(R.id.tv_text_separator);
             this.dataSet = (TextSeparatorDataSet) dataSet;
             tvText.setText(getText());

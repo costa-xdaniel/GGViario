@@ -10,7 +10,7 @@
         android:id="@+id/spinner_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SectorName"
+        android:text="Sector Name"
         android:textColor="@color/textPrimary"
         android:textSize="16sp"
         android:paddingTop="8dp"

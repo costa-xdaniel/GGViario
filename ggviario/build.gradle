@@ -23,6 +23,7 @@ repositories {
     jcenter()
 }
 
+
 dependencies {
 
     // BASE SUPPORT
@@ -85,5 +86,15 @@ dependencies {
     //compile 'com.kogitune:pre-lollipop-activity-transition:1.1.+'
 
     //Material-Animations
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+
+
+
+
+
+    ///Dragger
+    // compile 'com.github.ppamorim:dragger:1.2'
+    //compile 'com.github.ksoichiro:android-observablescrollview:VERSION'
 
 }

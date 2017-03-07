@@ -37,7 +37,7 @@ public class MainActivity extends AbstractActivityToolbarSlidingLayout {
     }
 
     @Override
-    protected android.support.v4.view.PagerAdapter getAdapter() {
+    protected android.support.v4.view.PagerAdapter getAdapter(Bundle savedInstanceState) {
 
         MainHomeFragment home = new MainHomeFragment();
         PagerAdapter viewPagerAdapter = new PagerAdapter(this.getSupportFragmentManager(), this);

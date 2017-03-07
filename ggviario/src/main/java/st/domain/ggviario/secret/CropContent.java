@@ -112,7 +112,7 @@ public class CropContent extends AppCompatActivity {
         this.list = dao.loadCropContents(this.date);
 
         for (CropSector cropSector : this.list){
-            this.addpter.add(new CropSectorAdapter.CropSectorDataSet(cropSector, this));
+            this.addpter.addItem(new CropSectorAdapter.CropSectorDataSet(cropSector, this));
         }
     }
 

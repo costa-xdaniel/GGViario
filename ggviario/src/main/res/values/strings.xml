@@ -109,9 +109,22 @@
     <string name="gender_is_required">O sexo é obrigatorio</string>
     <string name="aba">ABA</string>
     <string name="clients">Clientes</string>
-    <string name="lorem"></string>
+    <string name="lorem">s</string>
     <string name="geral_view">Visão Geral</string>
     <string name="credits_pendents">Creditos pendents</string>
     <string name="credits_pay">Creditos pago</string>
+    <string name="pay_now">pagar agora</string>
+    <string name="pay">pagar</string>
+    <string name="days">Dias</string>
+    <string name="day">Dia</string>
+    <string name="months">Meses</string>
+    <string name="month">Mês</string>
+    <string name="years">Anos</string>
+    <string name="year">Ano</string>
+    <string name="date_end_credit">Data finalizar pagamento</string>
+    <string name="complete_correctly_item">Preencha os item do credito corretamente</string>
+    <string name="product_price">Preco do produto</string>
+    <string name="space" />
+    <string name="credit_obs">Observação (Opcional)</string>
 
 </resources>

@@ -26,6 +26,7 @@
         <activity android:name=".CropActivity" />
         <activity android:name=".CropContent" />
         <activity android:name=".CreditsActivity" />
+        <activity android:name=".CreditsNew" />
         <activity android:name=".CreditsClientNewActivity" />
         <activity android:name=".CreditsClientDetailActivity" />
 

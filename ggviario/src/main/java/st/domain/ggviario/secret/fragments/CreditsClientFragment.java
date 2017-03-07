@@ -1,6 +1,7 @@
 package st.domain.ggviario.secret.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,19 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.cert.Certificate;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLPeerUnverifiedException;
-
+import st.domain.ggviario.secret.CreditsClientDetailActivity;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.CreditClientAdapter;
 import st.domain.ggviario.secret.dao.ClientDao;
-import st.domain.ggviario.secret.items.CreditsClientItem;
+import st.domain.ggviario.secret.items.ClientViewHolder;
 import st.domain.ggviario.secret.model.Client;
 import st.domain.support.android.adapter.ItemDataSet;
 import st.domain.support.android.adapter.ItemViewHolder;
@@ -51,15 +44,29 @@ public class CreditsClientFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        this.rootView = inflater.inflate(R.layout._credits_clients, container, false);
+        this.rootView = inflater.inflate(R.layout.recycler_view, container, false);
+
+        final ItemViewHolder.ItemCallback onClickItemCallback = new ItemViewHolder.ItemCallback() {
+            @Override
+            public void onCallback(ItemViewHolder itemViewHolder, View view, ItemDataSet itemDataSet, int adapterPosition) {
+                ClientViewHolder.CreditsClientDataSet clientDataSet = (ClientViewHolder.CreditsClientDataSet) itemDataSet;
+
+                Intent intent = new Intent( context, CreditsClientDetailActivity.class );
+                Bundle bundle = new Bundle();
+                bundle.putParcelable( "client", clientDataSet.getClient());
+                intent.putExtras( bundle );
+                context.startActivity(intent);
+            }
+        };
 
         // Recycler view bloc
-        this.recyclerView = ( RecyclerView ) this.rootView.findViewById( R.id.rv_credits_clients );
+        this.recyclerView = ( RecyclerView ) this.rootView.findViewById( R.id.rv);
         this.adapter = new CreditClientAdapter( this.context );
-        this.adapter.addItemFactory(R.layout._credits_clients_items, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.addItemFactory(R.layout._client_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
-                return new CreditsClientItem( view );
+                return new ClientViewHolder( view )
+                        .setOnClickCallback( onClickItemCallback );
             }
         });
 
@@ -76,10 +83,10 @@ public class CreditsClientFragment extends Fragment {
         this.dao.onLoad(new ClientDao.OnLoadAllData<Client>() {
             @Override
             protected void onLoadData( Client client, SQLRow row ) {
-                Integer totalCredits = row.integer( ClientDao.VER_STATUS_CLIENT.totalcredits );
-                Integer totalCreditsPay = row.integer( ClientDao.VER_STATUS_CLIENT.totalcreditspay );
-                ItemDataSet clientDataSet = CreditsClientItem.newInstance( client, totalCredits, totalCreditsPay );
-                adapter.add( clientDataSet );
+                Integer totalCredits = row.integer( ClientDao.ver_client_status.totalcredits );
+                Integer totalCreditsPay = row.integer( ClientDao.ver_client_status.totalcreditspay );
+                ItemDataSet clientDataSet = ClientViewHolder.newInstance( client, totalCredits, totalCreditsPay );
+                adapter.addItem( clientDataSet );
             }
         });
     }

@@ -1,24 +1,27 @@
 package st.domain.ggviario.secret.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import st.domain.support.android.util.BaseCharSequence;
 
 /**
  *
  * Created by dchost on 04/02/17.
  */
-public class Client extends BaseCharSequence {
+public class Client extends BaseCharSequence implements Parcelable {
 
+    private int id;
     private Gender gender;
-    private Integer id;
-    private String name;
-    private String surname;
     private ObjectItem residence;
     private ObjectItem typeDocument;
+    private String name;
+    private String surname;
     private String contact;
     private String mail;
     private String document;
 
-    public Client(Integer id, String name, String surname, ObjectItem residence, ObjectItem typeDocument, String contact, String mail, String document, Gender gender) {
+    public Client(int id, String name, String surname, ObjectItem residence, ObjectItem typeDocument, String contact, String mail, String document, Gender gender) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -40,6 +43,43 @@ public class Client extends BaseCharSequence {
         this.document = document;
         this.gender = gender;
     }
+
+    protected Client(Parcel in) {
+        this.name = in.readString();
+        this.surname = in.readString();
+        this.contact = in.readString();
+        this.mail = in.readString();
+        this.document = in.readString();
+        this.id = in.readInt();
+        this.gender = in.readParcelable( Gender.class.getClassLoader() );
+        this.residence = in.readParcelable( ObjectItem.class.getClassLoader() );
+        this.typeDocument = in.readParcelable( ObjectItem.class.getClassLoader() );
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(surname);
+        dest.writeString(contact);
+        dest.writeString(mail);
+        dest.writeString(document);
+        dest.writeInt( this.id );
+        dest.writeParcelable( this.gender, flags );
+        dest.writeParcelable( this.residence, flags );
+        dest.writeParcelable( this.typeDocument, flags );
+    }
+
+    public static final Creator<Client> CREATOR = new Creator<Client>() {
+        @Override
+        public Client createFromParcel(Parcel in) {
+            return new Client(in);
+        }
+
+        @Override
+        public Client[] newArray(int size) {
+            return new Client[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -137,4 +177,10 @@ public class Client extends BaseCharSequence {
                 : null;
         return avatar == null? null : avatar.toUpperCase();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
 }

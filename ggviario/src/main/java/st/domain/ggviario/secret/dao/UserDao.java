@@ -23,7 +23,7 @@ public class UserDao extends Dao
      * Obter o utilizador logado
      * @return
      */
-    public static User geUser(Context context)
+    public User getCurrentUser()
     {
 //        UserDao daoUser = new UserDao(context);
 //
