@@ -12,8 +12,7 @@ import android.view.MenuItem;
 import java.util.Map;
 
 import st.domain.ggviario.secret.callbaks.MenuObserver;
-import st.domain.ggviario.secret.fragments.CreditsNewFragment;
-import st.domain.support.android.fragment.BaseFragment;
+import st.domain.ggviario.secret.fragments.CreditRegisterFragment;
 import st.domain.support.android.fragment.CallbackFragmentManager;
 
 /**
@@ -49,20 +48,26 @@ public class CreditsNew extends AbstractActivityToolbarDone  {
         if ( savedInstanceState == null )
             savedInstanceState = getIntent().getExtras();
 
-        FragmentManager support = getSupportFragmentManager();
-        Fragment fragment = new CreditsNewFragment()
-                .setDone(new CallbackFragmentManager.FragmentCallback() {
+        {
 
-                    @Override
-                    public void onCallback(Fragment fragment, Map<String, Object> objectsParam, Bundle extraParam, Map<String, Object> pushMap) {
-                        finish();
-                    }
-                })
-                ;
-        fragment.setArguments( savedInstanceState);
-        support.beginTransaction().add( R.id.content_area, fragment, "credit-new" )
-                .commit()
-                ;
+            FragmentManager support = getSupportFragmentManager();
+
+            Fragment fragment = new CreditRegisterFragment()
+                    .setDone(new CallbackFragmentManager.FragmentCallback() {
+
+                        @Override
+                        public void onCallback(Fragment fragment, Map<String, Object> objectsParam, Bundle extraParam, Map<String, Object> pushMap) {
+                            finish();
+                        }
+                    });
+            fragment.setArguments(savedInstanceState);
+            if ( support.findFragmentById( R.id.content_area ) == null )
+                support.beginTransaction().add(R.id.content_area, fragment, "credit-new")
+                        .commit();
+            /*else support.beginTransaction().replace(R.id.content_area, fragment)
+                    .commit();
+                    */
+        }
     }
 
 
@@ -72,7 +77,7 @@ public class CreditsNew extends AbstractActivityToolbarDone  {
     @Override
     protected boolean onDoneAction() {
         Fragment fragment = this.getSupportFragmentManager().findFragmentByTag("credit-new");
-        return (fragment instanceof CreditsNewFragment) && ((CreditsNewFragment) fragment).done();
+        return (fragment instanceof CreditRegisterFragment) && ((CreditRegisterFragment) fragment).done();
     }
 
     @NonNull

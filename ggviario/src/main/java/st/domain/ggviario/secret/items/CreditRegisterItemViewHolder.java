@@ -19,7 +19,7 @@ import st.domain.support.android.adapter.ItemViewHolder;
  * Created by dchost on 05/03/17.
  */
 
-public class CreditNewItemViewHolder extends ItemViewHolder {
+public class CreditRegisterItemViewHolder extends ItemViewHolder {
 
     private TextView tvCreditProduct;
     private TextView tvCreditQuantity;
@@ -29,17 +29,17 @@ public class CreditNewItemViewHolder extends ItemViewHolder {
     private CreditProductItemDataSet dataSet;
     private NumberFormat numberFormat;
 
-    public CreditNewItemViewHolder removeCallback (ItemCallback removeCallback ){
+    public CreditRegisterItemViewHolder removeCallback (ItemCallback removeCallback ){
         this.removeCallback = removeCallback;
         return this;
     }
 
-    public CreditNewItemViewHolder editCallback (ItemCallback editCallback ){
+    public CreditRegisterItemViewHolder editCallback (ItemCallback editCallback ){
         this.editCallback = editCallback;
         return this;
     }
 
-    public CreditNewItemViewHolder(View itemView) {
+    public CreditRegisterItemViewHolder(View itemView) {
         super(itemView);
 
         this.numberFormat = NumberFormat.getNumberInstance( Locale.FRANCE );
