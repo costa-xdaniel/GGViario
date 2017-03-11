@@ -23,7 +23,7 @@ import java.util.Map;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.SimpleSpinnerAdapter;
 import st.domain.ggviario.secret.dao.ProductDao;
-import st.domain.ggviario.secret.items.CreditNewItemViewHolder;
+import st.domain.ggviario.secret.items.CreditRegisterItemViewHolder;
 import st.domain.ggviario.secret.model.Product;
 import st.domain.ggviario.secret.model.ProductPrice;
 import st.domain.support.android.fragment.BaseBottomSheetDialogFragment;
@@ -34,7 +34,7 @@ import st.domain.support.android.fragment.CallbackFragmentManager;
  * Created by dchost on 05/03/17.
  */
 
-public class CreditsAddItemFragment extends BaseBottomSheetDialogFragment {
+public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFragment {
 
     private Context context;
     private SimpleSpinnerAdapter productAdapter;
@@ -55,7 +55,7 @@ public class CreditsAddItemFragment extends BaseBottomSheetDialogFragment {
         this.context = context;
     }
 
-    public CreditsAddItemFragment setActionCallback(CallbackFragmentManager.FragmentCallback actionCallback ){
+    public CreditRegisterBottomSheetFragment setActionCallback(CallbackFragmentManager.FragmentCallback actionCallback ){
         this.actionCallback = actionCallback;
         return this;
     }
@@ -231,7 +231,7 @@ public class CreditsAddItemFragment extends BaseBottomSheetDialogFragment {
 
 
         Map<String, Object> params = new LinkedHashMap<>();
-        CreditNewItemViewHolder.CreditProductItemDataSet item = new CreditNewItemViewHolder.CreditProductItemDataSet( this.oldPriceQuantity);
+        CreditRegisterItemViewHolder.CreditProductItemDataSet item = new CreditRegisterItemViewHolder.CreditProductItemDataSet( this.oldPriceQuantity);
         int measureIndex = this.measureSpinner.getSelectedItemPosition();
         int productIndex = this.productSpinner.getSelectedItemPosition();
         Product product = ( Product ) this.productAdapter.get( productIndex );

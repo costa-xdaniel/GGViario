@@ -26,7 +26,7 @@ import st.domain.ggviario.secret.items.CropChartLineViewHolder;
 import st.domain.ggviario.secret.model.Sector;
 import st.domain.ggviario.secret.references.RColors;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.DataUtil;
+import st.domain.support.android.util.DateUtil;
 
 /**
  *
@@ -88,7 +88,7 @@ public class CropGeralReport extends Fragment
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.MONTH, 0);
 
-        DataUtil dateUtil = new DataUtil(calendar.getTime());
+        DateUtil dateUtil = new DateUtil(calendar.getTime());
 
         Log.i( "APP.GGVIARIO", "first-value: "+dateUtil );
         Log.i( "APP.GGVIARIO", "first-day-of-week: "+dateUtil.firtDayOfWeek() );

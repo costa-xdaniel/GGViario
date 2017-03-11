@@ -48,7 +48,8 @@ public class CreditsDao extends Dao<Credits> {
         query(
                 select("*")
                 .from($creditproduct)
-                .where(creditproduct.crediprod_credi_id).equal( value( row.integer( credit.credi_id ) ))
+                .where(creditproduct.crediprod_credi_id).equal( value( row.integer( credit.credi_id ) ) )
+
         ).onQueryResult(new OnAllQueryResults() {
             @Override
             protected void onRow(SQLRow row) {
@@ -102,6 +103,8 @@ public class CreditsDao extends Dao<Credits> {
         long idCredit = getResultExecut();
 
         for( CreditProduct item: creditProducts ) {
+
+
 
             execute(
                     insertInto($creditproduct).columns(

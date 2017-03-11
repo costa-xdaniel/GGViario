@@ -21,7 +21,7 @@ import st.domain.ggviario.secret.model.Credits;
 import st.domain.support.android.adapter.ItemDataSet;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.DataUtil;
+import st.domain.support.android.util.DateUtil;
 
 /**
  *
@@ -158,8 +158,8 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
         this.tvCreditValueTotal.setText( this.formaterMoney.format(this.dataSet.credits.getValueTotal()).concat( " STD" ) );
 
         //count days
-        DataUtil dataUtil = new DataUtil();
-        DataUtil.Interval interval = dataUtil.difference(this.dataSet.credits.getDateCredits());
+        DateUtil dataUtil = new DateUtil();
+        DateUtil.Interval interval = dataUtil.difference(this.dataSet.credits.getDateCredits());
 
         if( interval.getYear() == 0 && interval.getMonth() == 0) {
             this.tvCreditCountPrimary.setText( countFormatter.format( interval.getDay() ) );
