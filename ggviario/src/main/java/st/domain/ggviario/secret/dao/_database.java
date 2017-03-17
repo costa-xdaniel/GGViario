@@ -130,12 +130,12 @@ public interface _database {
         String credi_user_id = "credi_user_id";
         String credi_cli_id = "credi_cli_id";
         String credi_valuetotal = "credi_valuetotal";
-        String credi_valuepago = "credi_valuepago";
+        String credi_valuepay = "credi_valuepay";
         String credi_dtfinalizar = "credi_dtfinalizar";
         String credi_dtfim = "credi_dtfim";
 
         /**
-         * Credits state the status of credits.
+         * Credit state the status of credits.
          * <table border="1">
          *     <tr> <th>States</th> <th>Decisions</th> </tr>
          *     <tr><td> 1 </td> <td> Ativo (Sem nem um pagamento) </td> </tr>
@@ -179,5 +179,47 @@ public interface _database {
         String meas_id = "meas_id";
         String meas_cod = "meas_cod";
         String meas_name = "meas_name";
+    }
+
+    String $account = "account";
+    interface  account {
+        String account_id         ="account_id";
+        String account_bank_id    ="account_bank_id";
+        String account_user_id    ="account_user_id";
+        String account_name       ="account_name";
+        String account_number     ="account_number";
+        String account_agencianum ="account_agencianum";
+        String account_credits    ="account_credits";
+        String account_debits     ="account_debits";
+        String account_dtreg      ="account_dtreg";
+        String account_state      ="account_state";
+    }
+
+    String $bank = "bank";
+    interface bank {
+        String bank_id = "bank_id";
+        String bank_user_id = "bank_user_id";
+        String bank_name = "bank_name";
+        String bank_sigla = "bank_sigla";
+        String bank_cod = "bank_cod";
+        String bank_state = "bank_state";
+        String bank_dtreg = "bank_dtreg";
+        String bank_credits = "bank_credits";
+        String bank_debits = "bank_debits";
+    }
+
+    String $movimentaccount = "movimentaccount";
+    interface movimentaccount {
+        String movaccount_id         = "movaccount_id";
+        String movaccount_account_id = "movaccount_account_id";
+        String movaccount_user_id    = "movaccount_user_id";
+        String movaccount_debit      = "movaccount_debit";
+        String movaccount_credit     = "movaccount_credit";
+        String movaccount_desg       = "movaccount_desg";
+        String movaccount_document   = "movaccount_document";
+        String movaccount_rowkey     = "movaccount_rowkey";
+        String movaccount_table      = "movaccount_table";
+        String movaccount_dtreg      = "movaccount_dtreg";
+        String movaccount_state      = "movaccount_state";
     }
 }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:theme="@style/AppTheme"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_amount"
+        />
+
+    <TextView
+        android:id="@+id/tv_credit_value_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 000 0,00"
+        android:textColor="@color/textPrimary"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_amount"
+        />
+    <TextView
+        android:id="@+id/tv_credit_value_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="80 000,00"
+        android:textColor="@color/textPrimary"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <EditText
+                android:id="@+id/ed_value_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pay_value"
+                android:layout_marginBottom="16dp"
+                android:inputType="numberDecimal"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        >
+        <TextView
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor remanecente"
+            />
+
+        <TextView
+            android:id="@+id/tv_credit_remanecent"
+            android:layout_below="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor remanecente"
+            android:textColor="@color/textPrimary"
+            android:textSize="16sp"
+            />
+
+        <Button
+            android:id="@+id/bt_credit_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pagar"
+            android:layout_alignParentEnd="true"
+            />
+
+
+    </RelativeLayout>
+</LinearLayout>

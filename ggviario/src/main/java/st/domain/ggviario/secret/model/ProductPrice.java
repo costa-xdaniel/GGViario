@@ -1,5 +1,7 @@
 package st.domain.ggviario.secret.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import st.domain.support.android.util.BaseCharSequence;
@@ -9,7 +11,7 @@ import st.domain.support.android.util.BaseCharSequence;
  * Created by dchost on 28/02/17.
  */
 
-public class ProductPrice extends BaseCharSequence {
+public class ProductPrice extends BaseCharSequence implements Parcelable {
 
     private Product product;
     private  Measure measure;
@@ -22,6 +24,33 @@ public class ProductPrice extends BaseCharSequence {
         this.quantity = quantity;
         this.price = price;
     }
+
+    //Parcelable
+
+    protected ProductPrice(Parcel in) {
+        product = in.readParcelable(Product.class.getClassLoader());
+        quantity = in.readDouble();
+        price = in.readFloat();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(product, flags);
+        dest.writeDouble(quantity);
+        dest.writeFloat(price);
+    }
+
+    public static final Creator<ProductPrice> CREATOR = new Creator<ProductPrice>() {
+        @Override
+        public ProductPrice createFromParcel(Parcel in) {
+            return new ProductPrice(in);
+        }
+
+        @Override
+        public ProductPrice[] newArray(int size) {
+            return new ProductPrice[size];
+        }
+    };
 
     public Product getProduct() {
         return product;
@@ -56,5 +85,10 @@ public class ProductPrice extends BaseCharSequence {
     @Override
     public String toString() {
         return measure.getCod();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

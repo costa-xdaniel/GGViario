@@ -6,9 +6,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import st.domain.ggviario.secret.fragments.CreditPayBottomSheetDialogFragment;
 import st.domain.ggviario.secret.model.Client;
+import st.domain.ggviario.secret.model.Credit;
 import st.domain.ggviario.secret.model.CreditProduct;
-import st.domain.ggviario.secret.model.Credits;
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.model.Product;
 import st.domain.support.android.sql.OnQueryResult;
@@ -19,14 +20,14 @@ import st.domain.support.android.sql.SQLRow;
  * Created by dchost on 10/02/17.
  */
 
-public class CreditsDao extends Dao<Credits> {
+public class CreditsDao extends Dao<Credit> {
 
     public CreditsDao(Context context) {
         super(context);
     }
 
 
-    public void loadCreditClient( Client client, final OnLoadData<Credits> onLoadData ) {
+    public void loadCreditClient( Client client, final OnLoadData<Credit> onLoadData ) {
         query(
                 select("*")
                     .from($credit)
@@ -36,13 +37,13 @@ public class CreditsDao extends Dao<Credits> {
         onQueryResult(new OnQueryResult() {
             @Override
             public boolean accept(SQLRow row) {
-                Credits credits = mount(row);
-                return onLoadData.onLoad( credits, row );
+                Credit credit = mount(row);
+                return onLoadData.onLoad(credit, row );
             }
         });
     }
 
-    private Credits mount( SQLRow row ) {
+    private Credit mount(SQLRow row ) {
 
         final List<CreditProduct> list = new LinkedList<>();
         query(
@@ -58,10 +59,13 @@ public class CreditsDao extends Dao<Credits> {
             }
         });
 
-        return new Credits(
+        return new Credit(
+                row.integer(credit.credi_id),
                 row.real( credit.credi_valuetotal ),
                 row.date( credit.credi_dtreg ),
-                list
+                list,
+                row.real( credit.credi_valuepay),
+                row.integer( credit.credi_state )
         );
     }
 
@@ -128,5 +132,23 @@ public class CreditsDao extends Dao<Credits> {
         }
 
         return true;
+    }
+
+    public boolean payCredit(Credit vCredit, float value, String documentPayment) {
+        if( vCredit.getState() > 0 ){
+            int newState = vCredit.getValuePay() + value == vCredit.getValueTotal()? 0 : 2;
+
+            AccountDao accountDao = new AccountDao( this.getContext() );
+            boolean result = accountDao.regMovementAccount( 1, value, 0, "Pagamento de "+value+" para credito "+vCredit.getId(), documentPayment, $credit, vCredit.getId() );
+            if( !result ) return false;
+
+            execute(
+                    update( $credit )
+                        .set( credit.credi_valuepay , argumentOperation( credit.credi_valuepay, " + ", value( value ) ) )
+                        .set( credit.credi_state, value( newState ))
+                        .where( credit.credi_id ).equal( value( vCredit.getId() ))
+            );
+        }
+        return false;
     }
 }

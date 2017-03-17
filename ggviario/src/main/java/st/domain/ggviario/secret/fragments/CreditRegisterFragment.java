@@ -256,9 +256,10 @@ public class CreditRegisterFragment extends BaseFragment {
                 final CreditRegisterItemViewHolder.CreditProductItemDataSet item = (CreditRegisterItemViewHolder.CreditProductItemDataSet) itemDataSet;
                 CreditRegisterBottomSheetFragment dialogTestFragment = new CreditRegisterBottomSheetFragment();
                 Bundle params = new Bundle();
-                params.putFloat( "old_price_quantity", item.getPriceQuantity() );
+                params.putParcelable( "item", item );
                 dialogTestFragment.setArguments( params );
-                dialogTestFragment.setActionCallback(new CallbackFragmentManager.FragmentCallback() {
+
+                dialogTestFragment.setActionCallback( new CallbackFragmentManager.FragmentCallback() {
                     @Override
                     public void onCallback(Fragment fragment, Map<String, Object> objectsParam, Bundle extraParam, Map<String, Object> pushMap) {
                         adapter.setItem( adapterPosition, (ItemDataSet) objectsParam.get( "item" ));
@@ -292,7 +293,6 @@ public class CreditRegisterFragment extends BaseFragment {
                         ;
             }
         });
-
         ItemDataSet add = new CreditCreateNewItemViewHolder.AddCreditProductItemDataSet();
         this.adapter.addItem( add );
     }

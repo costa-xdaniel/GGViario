@@ -2,7 +2,9 @@ package st.domain.ggviario.secret.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import st.domain.ggviario.GGViario;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.SimpleSpinnerAdapter;
 import st.domain.ggviario.secret.dao.ProductDao;
@@ -70,7 +73,7 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
             savedInstanceState = getArguments();
 
         //load arguments
-        this.oldPriceQuantity =  savedInstanceState.getFloat( "old_price_quantity" );
+        CreditRegisterItemViewHolder.CreditProductItemDataSet item = savedInstanceState.getParcelable("item");
 
         // load util
         this.numberFormat = NumberFormat.getNumberInstance( Locale.FRANCE );
@@ -132,6 +135,7 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
                 }
             }
         });
+
         //populate
         productAdapter.add( "Produto" );
         this.productAdapter.addAll( this.productDao.loadProducts() );
@@ -146,7 +150,6 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
             public void onItemSelected( AdapterView<?> parent, View view, int position, long id) {
                 onMeasureSelected( position );
             }
-
             @Override
             public void onNothingSelected( AdapterView<?> parent ) {
             }
@@ -154,6 +157,23 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
         this.measureAdapter.setOnItemCreated( onItemCreated );
         this.measureSpinner.setAdapter( measureAdapter );
         this.onSelectedProduct( 0 );
+
+
+
+        //Set the transfered data if exist
+        this.oldPriceQuantity = 0.0f;
+        if ( item != null ) {
+
+            this.oldPriceQuantity =  item.getOldPriceQuantity();
+            this.edCreditQuantity.setText( String.valueOf( item.getQuantity() ) );
+
+            this.productSpinner.setSelection( item.getSelectedProductIndex() );
+            this.onSelectedProduct( item.getSelectedProductIndex() );
+
+            this.measureSpinner.setSelection( item.getSelectedMeasureIndex() );
+            this.onMeasureSelected( item.getSelectedMeasureIndex() );
+
+        }
 
         return rootView;
     }
@@ -171,13 +191,10 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
         }
     }
 
-    private void onSelectedProduct(int index) {
+    private void onSelectedProduct( int index ) {
         this.measureAdapter.clear();
         this.measureAdapter.add( "Medida" );
-        this.measureSpinner.setSelection( 0 );
         if( index == 0 ){
-            this.measureAdapter.clear();
-            this.measureAdapter.add( "Medida" );
             this.measureAdapter.notifyDataSetChanged();
             this.tvProductPrice.setText( this.numberFormat.format( 0.0 ));
         } else {
@@ -192,7 +209,7 @@ public class CreditRegisterBottomSheetFragment extends BaseBottomSheetDialogFrag
     private void onMeasureSelected( int index ) {
 
         if( index != 0 ) {
-            ProductPrice productPrice = (ProductPrice) this.measureAdapter.get(index);
+            ProductPrice productPrice = (ProductPrice) this.measureAdapter.get( index );
             this.tvProductPrice.setText( this.numberFormat.format( productPrice.getPrice() ) );
 
             if( hasQuantity() ) {

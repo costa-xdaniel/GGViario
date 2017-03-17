@@ -1,5 +1,7 @@
 package st.domain.ggviario.secret.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -13,12 +15,12 @@ import st.domain.support.android.util.BaseCharSequence;
  * Created by dchost on 10/02/17.
  */
 
-public class Product extends BaseCharSequence {
+public class Product extends BaseCharSequence implements Parcelable{
 
     private int id;
     private String name;
     private String detail;
-    private Measure metreage;
+    private Measure measure;
     private Date dateReg;
     private Float price;
     private Product product;
@@ -30,7 +32,7 @@ public class Product extends BaseCharSequence {
         this.id = id;
         this.name = name;
         this.detail = detail;
-        this.metreage = metreage;
+        this.measure = metreage;
         this.dateReg = dateReg;
         this.price = price;
         this.product = product;
@@ -38,6 +40,39 @@ public class Product extends BaseCharSequence {
         this.state = state;
         this.stock = stock;
     }
+
+    protected Product(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        detail = in.readString();
+        product = in.readParcelable(Product.class.getClassLoader());
+        scaleSuper = in.readDouble();
+        state = in.readInt();
+        stock = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(detail);
+        dest.writeParcelable(product, flags);
+        dest.writeDouble(scaleSuper);
+        dest.writeInt(state);
+        dest.writeInt(stock);
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -51,8 +86,8 @@ public class Product extends BaseCharSequence {
         return detail;
     }
 
-    public Measure getMetreage() {
-        return metreage;
+    public Measure getMeasure() {
+        return measure;
     }
 
     public Date getDateReg() {
@@ -83,5 +118,10 @@ public class Product extends BaseCharSequence {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

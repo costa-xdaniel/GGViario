@@ -16,8 +16,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import st.domain.ggviario.secret.R;
+import st.domain.ggviario.secret.model.Credit;
 import st.domain.ggviario.secret.model.CreditProduct;
-import st.domain.ggviario.secret.model.Credits;
 import st.domain.support.android.adapter.ItemDataSet;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
@@ -51,9 +51,24 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
     private int width;
     private boolean expand;
 
+    private ItemCallback payCallback;
+    private ItemCallback payNowCallback;
+
+
+    public ClientDetailCreditsViewHolder payCallback( ItemCallback payCallback ) {
+        this.payCallback = payCallback;
+        return this;
+    }
+
+    public ClientDetailCreditsViewHolder payNowCallback( ItemCallback payNowCallback ) {
+        this.payNowCallback = payNowCallback;
+        return this;
+    }
+
     public ClientDetailCreditsViewHolder(View itemView) {
 
         super(itemView);
+
 
         //formatter and calendar
         this.dateFormat = new SimpleDateFormat( "dd-MM-yyyy" );
@@ -77,13 +92,13 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
         this.btPay.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payNow();
+                onPayCreditClicked();
             }
         });
         this.btPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payFinally();
+                onPayCreditNowClicked();
             }
         });
 
@@ -130,7 +145,7 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
         expand( this.expand);
     }
 
-    public void expand(boolean expand) {
+    public void expand( boolean expand ) {
         if( expand ){
             this.ibtCreditViewMore.setImageResource( R.drawable.ic_expand_less_black_24dp );
             this.areaViewMore.setVisibility( View.VISIBLE );
@@ -141,12 +156,12 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
         }
     }
 
-    private void payNow() {
-
+    private void onPayCreditClicked() {
+        this.callback( this.payCallback );
     }
 
-    private void payFinally() {
-
+    private void onPayCreditNowClicked() {
+        this.callback( this.payNowCallback );
     }
 
     @Override
@@ -154,12 +169,12 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
 
         //setItem values
         this.dataSet = (CreditsClientDetailCreditsDataSet) dataSet;
-        this.tvCreditDate.setText( this.dateFormat.format( this.dataSet.credits.getDateCredits() ) );
-        this.tvCreditValueTotal.setText( this.formaterMoney.format(this.dataSet.credits.getValueTotal()).concat( " STD" ) );
+        this.tvCreditDate.setText( this.dateFormat.format( this.dataSet.credit.getDateCredits() ) );
+        this.tvCreditValueTotal.setText( this.formaterMoney.format(this.dataSet.credit.getValueTotal()).concat( " STD" ) );
 
         //count days
         DateUtil dataUtil = new DateUtil();
-        DateUtil.Interval interval = dataUtil.difference(this.dataSet.credits.getDateCredits());
+        DateUtil.Interval interval = dataUtil.difference(this.dataSet.credit.getDateCredits());
 
         if( interval.getYear() == 0 && interval.getMonth() == 0) {
             this.tvCreditCountPrimary.setText( countFormatter.format( interval.getDay() ) );
@@ -192,11 +207,11 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
 
 
         //Calendar
-        this.calendar.setTime( this.dataSet.credits.getDateCredits() );
+        this.calendar.setTime( this.dataSet.credit.getDateCredits() );
 
         //Repopulate Recycler View
         this.adapter.clear();
-        for (CreditProduct creditProduct: this.dataSet.credits.getProductList()) {
+        for (CreditProduct creditProduct: this.dataSet.credit.getProductList()) {
             CreditProductDataSet creditProductDataSet = new CreditProductDataSet( creditProduct );
             this.adapter.addItem( creditProductDataSet );
         }
@@ -209,15 +224,19 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
 
     public static  class CreditsClientDetailCreditsDataSet implements ItemDataSet{
 
-        private Credits credits;
+        private Credit credit;
 
-        public CreditsClientDetailCreditsDataSet(Credits credits) {
-            this.credits = credits;
+        public CreditsClientDetailCreditsDataSet(Credit credit) {
+            this.credit = credit;
         }
 
         @Override
         public int getLayoutId() {
             return R.layout._credit_item;
+        }
+
+        public Credit getCredit() {
+            return credit;
         }
     }
 

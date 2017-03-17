@@ -126,5 +126,8 @@
     <string name="product_price">Preco do produto</string>
     <string name="space" />
     <string name="credit_obs">Observação (Opcional)</string>
+    <string name="total_amount">Montante Total</string>
+    <string name="pay_amount">Montante pago</string>
+    <string name="pay_value">Valor a pagar</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package st.domain.ggviario.secret.items;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
@@ -107,7 +109,7 @@ public class CreditRegisterItemViewHolder extends ItemViewHolder {
 
     }
 
-    public static class CreditProductItemDataSet implements ItemDataSet{
+    public static class CreditProductItemDataSet  implements ItemDataSet, Parcelable {
 
         private Product selectedProduct;
         private ProductPrice productPrice;
@@ -120,6 +122,39 @@ public class CreditRegisterItemViewHolder extends ItemViewHolder {
         public CreditProductItemDataSet ( float oldPriceQuantity ) {
             this.oldPriceQuantity = oldPriceQuantity;
         }
+
+        protected CreditProductItemDataSet(Parcel in) {
+            selectedProduct = in.readParcelable(Product.class.getClassLoader());
+            productPrice = in.readParcelable(ProductPrice.class.getClassLoader());
+            quantity = in.readDouble();
+            priceQuantity = in.readFloat();
+            selectedProductIndex = in.readInt();
+            selectedMeasureIndex = in.readInt();
+            oldPriceQuantity = in.readFloat();
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeParcelable(selectedProduct, flags);
+            dest.writeParcelable(productPrice, flags);
+            dest.writeDouble(quantity);
+            dest.writeFloat(priceQuantity);
+            dest.writeInt(selectedProductIndex);
+            dest.writeInt(selectedMeasureIndex);
+            dest.writeFloat(oldPriceQuantity);
+        }
+
+        public static final Creator<CreditProductItemDataSet> CREATOR = new Creator<CreditProductItemDataSet>() {
+            @Override
+            public CreditProductItemDataSet createFromParcel(Parcel in) {
+                return new CreditProductItemDataSet(in);
+            }
+
+            @Override
+            public CreditProductItemDataSet[] newArray(int size) {
+                return new CreditProductItemDataSet[size];
+            }
+        };
 
         @Override
         public int getLayoutId() {
@@ -186,6 +221,11 @@ public class CreditRegisterItemViewHolder extends ItemViewHolder {
 
         public float getOldPriceQuantity() {
             return oldPriceQuantity;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
         }
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -16,9 +16,11 @@ import st.domain.ggviario.secret.dao.CreditsDao;
 import st.domain.ggviario.secret.dao.Dao;
 import st.domain.ggviario.secret.items.ClientDetailCreditsViewHolder;
 import st.domain.ggviario.secret.model.Client;
-import st.domain.ggviario.secret.model.Credits;
+import st.domain.ggviario.secret.model.Credit;
+import st.domain.support.android.adapter.ItemDataSet;
 import st.domain.support.android.adapter.ItemViewHolder;
 import st.domain.support.android.adapter.RecyclerViewAdapter;
+import st.domain.support.android.fragment.BaseFragment;
 import st.domain.support.android.sql.SQLRow;
 
 /**
@@ -26,7 +28,7 @@ import st.domain.support.android.sql.SQLRow;
  * Created by dchost on 10/02/17.
  */
 
-public class CreditsClientDetailCreditsFragment extends Fragment implements OnResultActivity {
+public class CreditsClientDetailCreditsFragment extends BaseFragment implements OnResultActivity {
 
     private View rootView;
     private RecyclerView recyclerView;
@@ -35,12 +37,12 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
     private CreditsDao creditsDao;
     private Client client;
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
     }
+
 
     @Nullable
     @Override
@@ -59,11 +61,27 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
         RecyclerView.LayoutManager layoutParams = new StaggeredGridLayoutManager( 1, StaggeredGridLayoutManager.VERTICAL );
         this.adapter = new RecyclerViewAdapter( this.context );
         this.recyclerView.setLayoutManager( layoutParams );
+        final ItemViewHolder.ItemCallback payCredits = new ItemViewHolder.ItemCallback() {
+            @Override
+            public void onCallback(ItemViewHolder itemViewHolder, View view, ItemDataSet itemDataSet, int adapterPosition) {
+                openPaySheetBottom( itemDataSet, adapterPosition );
+            }
+        };
+
+        final ItemViewHolder.ItemCallback payCreditsNow = new ItemViewHolder.DataSetCallbak() {
+            @Override
+            protected void onDataSetCallback(ItemDataSet itemDataSet, int adapterPosition) {
+                opemPayNowSheetBottom( itemDataSet, adapterPosition );
+            }
+        };
+
 
         this.adapter.addItemFactory(R.layout._credit_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
-                return new ClientDetailCreditsViewHolder(view);
+                return new ClientDetailCreditsViewHolder(view)
+                        .payCallback( payCredits )
+                        .payNowCallback( payCreditsNow );
             }
         });
 
@@ -74,11 +92,24 @@ public class CreditsClientDetailCreditsFragment extends Fragment implements OnRe
         return  this.rootView;
     }
 
+    private void openPaySheetBottom(ItemDataSet itemDataSet, int adapterPosition) {
+        BottomSheetDialogFragment dialogFragment = new CreditPayBottomSheetDialogFragment();
+        Bundle arguments = new Bundle();
+        ClientDetailCreditsViewHolder.CreditsClientDetailCreditsDataSet creditDataSet = (ClientDetailCreditsViewHolder.CreditsClientDetailCreditsDataSet) itemDataSet;
+        arguments.putParcelable( "credit", creditDataSet.getCredit());
+        dialogFragment.setArguments( arguments );
+        dialogFragment.show( this.getFragmentManager(), "" );
+    }
+
+    private void opemPayNowSheetBottom(ItemDataSet itemDataSet, int adapterPosition) {
+        //TODO openPaySheetBottom credit here
+    }
+
     private void populateRecyclerView() {
-        this.creditsDao.loadCreditClient( this.client, new Dao.OnLoadAllData<Credits>() {
+        this.creditsDao.loadCreditClient( this.client, new Dao.OnLoadAllData<Credit>() {
             @Override
-            protected void onLoadData(Credits credits, SQLRow row) {
-                adapter.addItem( new ClientDetailCreditsViewHolder.CreditsClientDetailCreditsDataSet(credits));
+            protected void onLoadData(Credit credit, SQLRow row) {
+                adapter.addItem( new ClientDetailCreditsViewHolder.CreditsClientDetailCreditsDataSet(credit));
             }
         });
     }

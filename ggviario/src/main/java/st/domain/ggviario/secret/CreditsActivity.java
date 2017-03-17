@@ -29,22 +29,6 @@ public class CreditsActivity extends AbstractActivityToolbarSlidingLayout {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        //TRASITION
-        /*
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Transition exit = new Explode()
-                    .setDuration(3000);
-
-            Transition reenter = new Slide()
-                    .setDuration(3000);
-
-            getWindow().setExitTransition( exit );
-            getWindow().setReenterTransition( reenter );
-        }
-*/
-
         super.onCreate(savedInstanceState);
 
         //Floating Action Menu
