@@ -25,7 +25,7 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:elevation="0dp"
             />
-        <st.domain.support.android.view.SlidingTabLayout
+        <st.zudamue.support.android.view.SlidingTabLayout
             android:id="@+id/sliding_pager_tabs"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"

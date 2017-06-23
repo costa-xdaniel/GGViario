@@ -5,9 +5,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import st.domain.ggviario.secret.R;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
 
 /**
  *

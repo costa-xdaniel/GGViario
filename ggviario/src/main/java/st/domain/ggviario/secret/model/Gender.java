@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import st.domain.ggviario.secret.dao._database;
-import st.domain.support.android.sql.annnotation.Column;
-import st.domain.support.android.util.BaseCharSequence;
+import st.zudamue.support.android.sql.annnotation.Column;
+import st.zudamue.support.android.util.BaseCharSequence;
 
 
 /**

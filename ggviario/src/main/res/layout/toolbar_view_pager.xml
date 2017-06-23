@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_pager"/>
 
-    <st.domain.support.android.view.SlidingTabLayout
+    <st.zudamue.support.android.view.SlidingTabLayout
         android:id="@+id/sliding_pager_tabs"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

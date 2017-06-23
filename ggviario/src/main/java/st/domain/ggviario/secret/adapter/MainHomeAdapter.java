@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import st.domain.ggviario.secret.R;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.BaseCharSequence;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.util.BaseCharSequence;
 
 /**
  * Created by xdata on 8/11/16.
@@ -21,8 +21,8 @@ public class MainHomeAdapter extends RecyclerViewAdapter {
 
     public MainHomeAdapter(Context content)
     {
-        super(content);
-        super.addItemFactory(R.layout._main_home_operation, new ViewHolderFactory() {
+        super( content );
+        super.registerFactory(R.layout._main_home_operation, new ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
                 return new ItemOperation(view);

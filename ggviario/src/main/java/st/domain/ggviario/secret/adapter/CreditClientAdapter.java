@@ -2,7 +2,7 @@ package st.domain.ggviario.secret.adapter;
 
 import android.content.Context;
 
-import st.domain.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
 
 /**
  *

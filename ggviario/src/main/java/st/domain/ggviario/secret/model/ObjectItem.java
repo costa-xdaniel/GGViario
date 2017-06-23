@@ -3,7 +3,7 @@ package st.domain.ggviario.secret.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import st.domain.support.android.util.BaseCharSequence;
+import st.zudamue.support.android.util.BaseCharSequence;
 
 /**
  *

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import st.domain.ggviario.secret.CreditsActivity;
 import st.domain.ggviario.secret.CropActivity;
 import st.domain.ggviario.secret.Despesas;
-import st.domain.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemDataSet;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.MainHomeAdapter;
 

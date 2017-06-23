@@ -5,8 +5,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import st.domain.ggviario.secret.R;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
 
 /**
  *

@@ -5,7 +5,7 @@ import android.util.Log;
 
 
 import st.domain.ggviario.secret.R;
-import st.domain.support.android.util.ShapDrawableBuilder;
+import st.zudamue.support.android.util.ShapDrawableBuilder;
 
 import java.util.Arrays;
 import java.util.HashMap;

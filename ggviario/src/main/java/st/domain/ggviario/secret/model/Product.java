@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 
 import java.util.Date;
 
-import st.domain.support.android.util.BaseCharSequence;
+import st.zudamue.support.android.util.BaseCharSequence;
 
 
 /**

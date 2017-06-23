@@ -18,10 +18,10 @@ import java.util.Locale;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.model.Credit;
 import st.domain.ggviario.secret.model.CreditProduct;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.DateUtil;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.util.DateUtil;
 
 /**
  *
@@ -130,7 +130,7 @@ public class ClientDetailCreditsViewHolder extends ItemViewHolder {
         this.adapter = new RecyclerViewAdapter( this.getContext() );
         RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         this.recyclerView.setLayoutManager( layoutManager );
-        this.adapter.addItemFactory(R.layout._credit_item_product,
+        this.adapter.registerFactory(R.layout._credit_item_product,
                 new RecyclerViewAdapter.ViewHolderFactory() {
                     @Override
                     public ItemViewHolder factory(View view) {

@@ -18,10 +18,10 @@ import java.util.List;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.adapter.CropChartSectorAdapter;
 import st.domain.ggviario.secret.model.Sector;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.ListOperation;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.util.ListOperation;
 
 /**
  *

@@ -13,7 +13,7 @@ import java.util.Map;
 
 import st.domain.ggviario.secret.callbaks.MenuObserver;
 import st.domain.ggviario.secret.fragments.CreditRegisterFragment;
-import st.domain.support.android.fragment.CallbackFragmentManager;
+import st.zudamue.support.android.fragment.CallbackFragmentManager;
 
 /**
  *

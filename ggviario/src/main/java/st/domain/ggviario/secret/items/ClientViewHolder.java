@@ -5,8 +5,8 @@ import android.widget.TextView;
 
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.model.Client;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
 
 /**
  *

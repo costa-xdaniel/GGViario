@@ -10,7 +10,7 @@ import android.view.View;
 
 import st.domain.ggviario.secret.adapter.PagerAdapter;
 import st.domain.ggviario.secret.fragments.CreditsClientFragment;
-import st.domain.support.android.view.SlidingTabLayout;
+import st.zudamue.support.android.view.SlidingTabLayout;
 
 /**
  *

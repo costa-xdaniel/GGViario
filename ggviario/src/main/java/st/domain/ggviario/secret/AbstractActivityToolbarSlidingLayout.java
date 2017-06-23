@@ -6,7 +6,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 
-import st.domain.support.android.view.SlidingTabLayout;
+import st.zudamue.support.android.view.SlidingTabLayout;
 
 public abstract class AbstractActivityToolbarSlidingLayout extends AbstractActivityToolbar {
 

@@ -17,7 +17,7 @@ import java.util.Locale;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.dao.CreditsDao;
 import st.domain.ggviario.secret.model.Credit;
-import st.domain.support.android.fragment.BaseBottomSheetDialogFragment;
+import st.zudamue.support.android.fragment.BaseBottomSheetDialogFragment;
 
 /**
  *

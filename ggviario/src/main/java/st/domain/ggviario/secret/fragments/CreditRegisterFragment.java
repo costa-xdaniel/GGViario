@@ -32,13 +32,13 @@ import st.domain.ggviario.secret.items.CreditCreateNewItemViewHolder;
 import st.domain.ggviario.secret.items.CreditRegisterItemViewHolder;
 import st.domain.ggviario.secret.model.Client;
 import st.domain.ggviario.secret.model.CreditProduct;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.fragment.BaseFragment;
-import st.domain.support.android.fragment.CallbackFragmentManager;
-import st.domain.support.android.fragment.DatePickerDialogSupport;
-import st.domain.support.android.util.DateUtil;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.fragment.BaseFragment;
+import st.zudamue.support.android.fragment.CallbackFragmentManager;
+import st.zudamue.support.android.fragment.DatePickerDialogSupport;
+import st.zudamue.support.android.util.DateUtil;
 
 
 /**
@@ -272,7 +272,7 @@ public class CreditRegisterFragment extends BaseFragment {
         };
 
 
-        this.adapter.addItemFactory(R.layout.credits_operaction_add, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.registerFactory(R.layout.credits_operaction_add, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory( View view ) {
                 CreditCreateNewItemViewHolder addCreditsProduct = new CreditCreateNewItemViewHolder( view );
@@ -284,7 +284,7 @@ public class CreditRegisterFragment extends BaseFragment {
         /**
          * Add the credit credit item factory
          */
-        this.adapter.addItemFactory(R.layout._credit_newcredit_item, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.registerFactory(R.layout._credit_newcredit_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
                 return new CreditRegisterItemViewHolder( view )

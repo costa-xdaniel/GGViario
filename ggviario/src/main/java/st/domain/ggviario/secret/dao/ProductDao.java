@@ -10,7 +10,7 @@ import java.util.Map;
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.model.ProductPrice;
 import st.domain.ggviario.secret.model.Product;
-import st.domain.support.android.sql.SQLRow;
+import st.zudamue.support.android.sql.SQLRow;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ProductDao extends Dao<Product> {
         query(
                 select("*")
                 .from($measure)
-        ).onQueryResult(new OnAllQueryResults() {
+        ).forLoopCursor(new OnAllQueryResults() {
             @Override
             protected void onRow(SQLRow row) {
                 Measure measure = mountMeasure( row );
@@ -128,7 +128,7 @@ public class ProductDao extends Dao<Product> {
                 .from($productprice)
                 .where(productprice.prodprice_meas_id).equal( value( product.getId() ) )
                 .and( productprice.prodprice_state ).equal( value( 1 ) ) // etado activo
-        ).onQueryResult(new OnAllQueryResults() {
+        ).forLoopCursor(new OnAllQueryResults() {
             @Override
             protected void onRow(SQLRow row) {
                 Integer id = row.integer( productprice.prodprice_id );

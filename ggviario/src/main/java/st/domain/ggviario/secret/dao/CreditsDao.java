@@ -12,8 +12,8 @@ import st.domain.ggviario.secret.model.Credit;
 import st.domain.ggviario.secret.model.CreditProduct;
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.model.Product;
-import st.domain.support.android.sql.OnQueryResult;
-import st.domain.support.android.sql.SQLRow;
+import st.zudamue.support.android.sql.OnQueryResult;
+import st.zudamue.support.android.sql.SQLRow;
 
 /**
  *
@@ -51,7 +51,7 @@ public class CreditsDao extends Dao<Credit> {
                 .from($creditproduct)
                 .where(creditproduct.crediprod_credi_id).equal( value( row.integer( credit.credi_id ) ) )
 
-        ).onQueryResult(new OnAllQueryResults() {
+        ).forLoopCursor( new OnAllQueryResults() {
             @Override
             protected void onRow(SQLRow row) {
                 CreditProduct creditProduct = mountCreditProduct( row );

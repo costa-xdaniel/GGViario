@@ -6,10 +6,10 @@ import java.lang.reflect.Field;
 
 import st.domain.ggviario.secret.model.Client;
 import st.domain.ggviario.secret.model.User;
-import st.domain.support.android.sql.LiteDatabase;
-import st.domain.support.android.sql.SQLRow;
-import st.domain.support.android.sql.annnotation.Column;
-import st.domain.support.android.sql.sqlite.AssetsDatabase;
+import st.zudamue.support.android.sql.LiteDatabase;
+import st.zudamue.support.android.sql.SQLRow;
+import st.zudamue.support.android.sql.annnotation.Column;
+import st.zudamue.support.android.sql.sqlite.AssetsDatabase;
 
 /**
  *

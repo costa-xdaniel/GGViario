@@ -8,9 +8,9 @@ import android.widget.TextView;
 
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.model.CropSector;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
 
 /**
  *
@@ -23,7 +23,7 @@ public class CropSectorAdapter extends RecyclerViewAdapter {
     public CropSectorAdapter(Context context) {
         super(context);
 
-        super.addItemFactory(R.layout._crop_datable_date_content_sector,
+        super.registerFactory(R.layout._crop_datable_date_content_sector,
                 new ViewHolderFactory() {
                     @Override
                     public ItemViewHolder factory(View view) {

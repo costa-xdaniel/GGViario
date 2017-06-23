@@ -38,7 +38,7 @@ dependencies {
 
     //  ANIMATIONS LIBRARY
     //    MENU DRAWABLE LIBRARY
-    compile project(':dbutil')
+    compile project(':zudamue')
     //compile project(':rnet')
 
     //DATA PIKER WDULLAER {https://github.com/wdullaer/MaterialDateTimePicker}

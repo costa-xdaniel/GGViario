@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import st.domain.ggviario.secret.R;
-import st.domain.support.android.model.ItemView;
+import st.zudamue.support.android.model.ItemView;
 
 /**
  * Created by dchost on 24/02/17.

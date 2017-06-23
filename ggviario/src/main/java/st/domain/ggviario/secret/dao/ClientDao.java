@@ -11,8 +11,8 @@ import java.util.Map;
 
 import st.domain.ggviario.secret.model.Client;
 import st.domain.ggviario.secret.model.Gender;
-import st.domain.support.android.sql.OnQueryResult;
-import st.domain.support.android.sql.SQLRow;
+import st.zudamue.support.android.sql.OnQueryResult;
+import st.zudamue.support.android.sql.SQLRow;
 
 /**
  *

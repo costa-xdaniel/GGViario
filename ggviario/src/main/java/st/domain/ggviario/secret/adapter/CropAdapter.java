@@ -12,9 +12,9 @@ import java.util.Calendar;
 import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.model.Crop;
 import st.domain.ggviario.secret.items.TextSeparatorItem;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
 
 /**
  *
@@ -28,7 +28,7 @@ public class CropAdapter extends RecyclerViewAdapter {
     public CropAdapter (Context context) {
         super(context);
 
-        this.addItemFactory(R.layout._crop_datable_date,
+        this.registerFactory(R.layout._crop_datable_date,
                 new ViewHolderFactory() {
                     @Override
                     public ItemViewHolder factory(View view) {
@@ -36,7 +36,7 @@ public class CropAdapter extends RecyclerViewAdapter {
                     }
                 });
 
-        this.addItemFactory(R.layout.item_textseparator, TextSeparatorItem.factoryInstance());
+        this.registerFactory(R.layout.item_textseparator, TextSeparatorItem.factoryInstance());
     }
 
     public void setOpenCrop(OpenCrop openCrop){

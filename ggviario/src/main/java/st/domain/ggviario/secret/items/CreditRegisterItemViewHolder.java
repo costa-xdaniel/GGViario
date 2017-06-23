@@ -13,8 +13,8 @@ import st.domain.ggviario.secret.R;
 import st.domain.ggviario.secret.model.Measure;
 import st.domain.ggviario.secret.model.Product;
 import st.domain.ggviario.secret.model.ProductPrice;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
 
 /**
  *

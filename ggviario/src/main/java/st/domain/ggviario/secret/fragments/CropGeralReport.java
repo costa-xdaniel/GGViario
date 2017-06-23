@@ -25,8 +25,8 @@ import st.domain.ggviario.secret.dao.SectorDao;
 import st.domain.ggviario.secret.items.CropChartLineViewHolder;
 import st.domain.ggviario.secret.model.Sector;
 import st.domain.ggviario.secret.references.RColors;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.util.DateUtil;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.util.DateUtil;
 
 /**
  *

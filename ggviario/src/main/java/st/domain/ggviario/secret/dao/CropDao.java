@@ -17,9 +17,9 @@ import st.domain.ggviario.secret.model.Crop;
 import st.domain.ggviario.secret.model.CropSector;
 import st.domain.ggviario.secret.model.Sector;
 import st.domain.ggviario.secret.model.User;
-import st.domain.support.android.sql.OnQueryResult;
-import st.domain.support.android.sql.SQLRow;
-import st.domain.support.android.sql.builder.Select;
+import st.zudamue.support.android.sql.OnQueryResult;
+import st.zudamue.support.android.sql.SQLRow;
+import st.zudamue.support.android.sql.builder.Select;
 
 
 /**

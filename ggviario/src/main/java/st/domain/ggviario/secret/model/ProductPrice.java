@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import st.domain.support.android.util.BaseCharSequence;
+import st.zudamue.support.android.util.BaseCharSequence;
 
 /**
  *

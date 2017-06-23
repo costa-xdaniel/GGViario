@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import st.domain.ggviario.secret.adapter.PagerAdapter;
 import st.domain.ggviario.secret.dao.Dao;
 import st.domain.ggviario.secret.fragments.MainHomeFragment;
-import st.domain.support.android.view.SlidingTabLayout;
+import st.zudamue.support.android.view.SlidingTabLayout;
 
 public class MainActivity extends AbstractActivityToolbarSlidingLayout {
 

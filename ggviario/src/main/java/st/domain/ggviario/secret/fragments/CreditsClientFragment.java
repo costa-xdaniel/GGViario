@@ -17,10 +17,10 @@ import st.domain.ggviario.secret.adapter.CreditClientAdapter;
 import st.domain.ggviario.secret.dao.ClientDao;
 import st.domain.ggviario.secret.items.ClientViewHolder;
 import st.domain.ggviario.secret.model.Client;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.sql.SQLRow;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.sql.SQLRow;
 
 /**
  *
@@ -62,7 +62,7 @@ public class CreditsClientFragment extends Fragment {
         // Recycler view bloc
         this.recyclerView = ( RecyclerView ) this.rootView.findViewById( R.id.rv);
         this.adapter = new CreditClientAdapter( this.context );
-        this.adapter.addItemFactory(R.layout._client_item, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.registerFactory(R.layout._client_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
                 return new ClientViewHolder( view )

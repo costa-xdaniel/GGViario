@@ -16,7 +16,7 @@ import st.domain.ggviario.secret.fragments.CropDateFragment;
 import st.domain.ggviario.secret.fragments.CropGeralReport;
 import st.domain.ggviario.secret.fragments.OnResultActivity;
 import st.domain.ggviario.secret.references.RMap;
-import st.domain.support.android.view.SlidingTabLayout;
+import st.zudamue.support.android.view.SlidingTabLayout;
 
 /**
  *

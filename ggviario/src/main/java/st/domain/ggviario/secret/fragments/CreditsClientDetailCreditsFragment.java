@@ -17,11 +17,11 @@ import st.domain.ggviario.secret.dao.Dao;
 import st.domain.ggviario.secret.items.ClientDetailCreditsViewHolder;
 import st.domain.ggviario.secret.model.Client;
 import st.domain.ggviario.secret.model.Credit;
-import st.domain.support.android.adapter.ItemDataSet;
-import st.domain.support.android.adapter.ItemViewHolder;
-import st.domain.support.android.adapter.RecyclerViewAdapter;
-import st.domain.support.android.fragment.BaseFragment;
-import st.domain.support.android.sql.SQLRow;
+import st.zudamue.support.android.adapter.ItemDataSet;
+import st.zudamue.support.android.adapter.ItemViewHolder;
+import st.zudamue.support.android.adapter.RecyclerViewAdapter;
+import st.zudamue.support.android.fragment.BaseFragment;
+import st.zudamue.support.android.sql.SQLRow;
 
 /**
  *
@@ -68,7 +68,7 @@ public class CreditsClientDetailCreditsFragment extends BaseFragment implements 
             }
         };
 
-        final ItemViewHolder.ItemCallback payCreditsNow = new ItemViewHolder.DataSetCallbak() {
+        final ItemViewHolder.ItemCallback payCreditsNow = new ItemViewHolder.DataSetCallback() {
             @Override
             protected void onDataSetCallback(ItemDataSet itemDataSet, int adapterPosition) {
                 opemPayNowSheetBottom( itemDataSet, adapterPosition );
@@ -76,7 +76,7 @@ public class CreditsClientDetailCreditsFragment extends BaseFragment implements 
         };
 
 
-        this.adapter.addItemFactory(R.layout._credit_item, new RecyclerViewAdapter.ViewHolderFactory() {
+        this.adapter.registerFactory(R.layout._credit_item, new RecyclerViewAdapter.ViewHolderFactory() {
             @Override
             public ItemViewHolder factory(View view) {
                 return new ClientDetailCreditsViewHolder(view)

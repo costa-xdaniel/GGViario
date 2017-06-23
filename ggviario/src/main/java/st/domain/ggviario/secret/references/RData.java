@@ -1,6 +1,6 @@
 package st.domain.ggviario.secret.references;
 
-import st.domain.support.android.text.XFieldName;
+import st.zudamue.support.android.text.XFieldName;
 
 /**
  * Created by xdata on 7/25/16.

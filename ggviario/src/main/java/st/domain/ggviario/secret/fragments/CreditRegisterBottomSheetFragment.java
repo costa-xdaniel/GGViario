@@ -29,8 +29,8 @@ import st.domain.ggviario.secret.dao.ProductDao;
 import st.domain.ggviario.secret.items.CreditRegisterItemViewHolder;
 import st.domain.ggviario.secret.model.Product;
 import st.domain.ggviario.secret.model.ProductPrice;
-import st.domain.support.android.fragment.BaseBottomSheetDialogFragment;
-import st.domain.support.android.fragment.CallbackFragmentManager;
+import st.zudamue.support.android.fragment.BaseBottomSheetDialogFragment;
+import st.zudamue.support.android.fragment.CallbackFragmentManager;
 
 /**
  *

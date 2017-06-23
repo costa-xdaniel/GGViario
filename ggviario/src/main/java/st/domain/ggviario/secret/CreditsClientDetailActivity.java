@@ -15,7 +15,7 @@ import android.view.View;
 import st.domain.ggviario.secret.fragments.CreditsClientDetailCreditsFragment;
 import st.domain.ggviario.secret.fragments.SampleFragment;
 import st.domain.ggviario.secret.model.Client;
-import st.domain.support.android.view.SlidingTabLayout;
+import st.zudamue.support.android.view.SlidingTabLayout;
 
 /**
  *
